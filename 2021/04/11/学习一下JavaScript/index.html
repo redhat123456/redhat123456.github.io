@@ -593,10 +593,10 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
           
         
           
-            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-04T01:57:41+08:00">
+            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-05-15T11:49:25+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：2021年5月4日</p>
+    <p>更新于：2021年5月15日</p>
   </a>
 </div>
 
@@ -623,13 +623,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>字数：9k字</p>
+      <p>字数：12.6k字</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>时长：34分钟</p>
+      <p>时长：49分钟</p>
     </a>
   </div>
 
@@ -1330,6 +1330,427 @@ checkscope();
 <p>中文版：<a target="_blank" rel="noopener" href="http://yanhaijing.com/es5/#115">http://yanhaijing.com/es5/#115</a></p>
 <p>让我们开始了解规范吧！</p>
 <h2 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h2><p>首先是第 8 章 Types：</p>
+<p>Types are further subclassified into ECMAScript language types and specification types.</p>
+<p>An ECMAScript language type corresponds to values that are directly manipulated by an ECMAScript programmer using the ECMAScript language. The ECMAScript language types are Undefined, Null, Boolean, String, Number, and Object.</p>
+<p>A specification type corresponds to meta-values that are used within algorithms to describe the semantics of ECMAScript language constructs and ECMAScript language types. The specification types are Reference, List, Completion, Property Descriptor, Property Identifier, Lexical Environment, and Environment Record.</p>
+<p>我们简单的翻译一下：</p>
+<p>ECMAScript 的类型分为语言类型和规范类型。</p>
+<p>ECMAScript 语言类型是开发者直接使用 ECMAScript 可以操作的。其实就是我们常说的Undefined, Null, Boolean, String, Number, 和 Object。</p>
+<p>而规范类型相当于 meta-values，是用来用算法描述 ECMAScript 语言结构和 ECMAScript 语言类型的。规范类型包括：Reference, List, Completion, Property Descriptor, Property Identifier, Lexical Environment, 和 Environment Record。</p>
+<p>没懂？没关系，我们只要知道在 ECMAScript 规范中还有一种只存在于规范中的类型，它们的作用是用来描述语言底层行为逻辑。</p>
+<p>今天我们要讲的重点是便是其中的 Reference 类型。它与 this 的指向有着密切的关联。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>那什么又是 Reference ？</p>
+<p>让我们看 8.7 章 The Reference Specification Type：</p>
+<pre><code>The Reference type is used to explain the behaviour of such operators as delete, typeof, and the assignment operators.
+</code></pre>
+<p>所以 Reference 类型就是用来解释诸如 delete、typeof 以及赋值等操作行为的。</p>
+<p>抄袭尤雨溪大大的话，就是：</p>
+<p>这里的 Reference 是一个 Specification Type，也就是 “只存在于规范里的抽象类型”。它们是为了更好地描述语言的底层行为逻辑才存在的，但并不存在于实际的 js 代码中。</p>
+<p>再看接下来的这段具体介绍 Reference 的内容：</p>
+<pre><code>A Reference is a resolved name binding.
+
+A Reference consists of three components, the base value, the referenced name and the Boolean valued strict reference flag.
+
+The base value is either undefined, an Object, a Boolean, a String, a Number, or an environment record (10.2.1).
+
+A base value of undefined indicates that the reference could not be resolved to a binding. The referenced name is a String.
+</code></pre>
+<p>这段讲述了 Reference 的构成，由三个组成部分，分别是：</p>
+<ul>
+<li>base value</li>
+<li>referenced name</li>
+<li>strict reference</li>
+</ul>
+<p>可是这些到底是什么呢？</p>
+<p>我们简单的理解的话：</p>
+<p>base value 就是属性所在的对象或者就是 EnvironmentRecord，它的值只可能是 undefined, an Object, a Boolean, a String, a Number, or an environment record 其中的一种。</p>
+<p>referenced name 就是属性的名称。</p>
+<p>举个例子：</p>
+<pre><code>var foo = 1;
+
+// 对应的Reference是：
+var fooReference = &#123;
+    base: EnvironmentRecord,
+    name: &#39;foo&#39;,
+    strict: false
+&#125;;
+</code></pre>
+<p>再举个例子：</p>
+<pre><code>var foo = &#123;
+    bar: function () &#123;
+        return this;
+    &#125;
+&#125;;
+
+foo.bar(); // foo
+
+// bar对应的Reference是：
+var BarReference = &#123;
+    base: foo,
+    propertyName: &#39;bar&#39;,
+    strict: false
+&#125;;
+</code></pre>
+<p>而且规范中还提供了获取 Reference 组成部分的方法，比如 GetBase 和 IsPropertyReference。</p>
+<p>这两个方法很简单，简单看一看：</p>
+<p>1.GetBase</p>
+<pre><code>GetBase(V). Returns the base value component of the reference V.
+</code></pre>
+<p>返回 reference 的 base value。</p>
+<p>2.IsPropertyReference</p>
+<pre><code>IsPropertyReference(V). Returns true if either the base value is an object or HasPrimitiveBase(V) is true; otherwise returns false.
+</code></pre>
+<p>简单的理解：如果 base value 是一个对象，就返回true。</p>
+<p>GetValue<br>除此之外，紧接着在 8.7.1 章规范中就讲了一个用于从 Reference 类型获取对应值的方法： GetValue。</p>
+<p>简单模拟 GetValue 的使用：</p>
+<pre><code>var foo = 1;
+
+var fooReference = &#123;
+    base: EnvironmentRecord,
+    name: &#39;foo&#39;,
+    strict: false
+&#125;;
+
+GetValue(fooReference) // 1;
+</code></pre>
+<p>GetValue 返回对象属性真正的值，但是要注意：</p>
+<p><strong>调用 GetValue，返回的将是具体的值，而不再是一个 Reference</strong></p>
+<p>这个很重要，这个很重要，这个很重要。</p>
+<h2 id="如何确定this的值"><a href="#如何确定this的值" class="headerlink" title="如何确定this的值"></a>如何确定this的值</h2><p>关于 Reference 讲了那么多，为什么要讲 Reference 呢？到底 Reference 跟本文的主题 this 有哪些关联呢？如果你能耐心看完之前的内容，以下开始进入高能阶段：</p>
+<p>看规范 11.2.3 Function Calls：</p>
+<p>这里讲了当函数调用的时候，如何确定 this 的取值。</p>
+<p>只看第一步、第六步、第七步：</p>
+<p>1.Let ref be the result of evaluating MemberExpression.</p>
+<p>6.If Type(ref) is Reference, then</p>
+<pre><code>a.If IsPropertyReference(ref) is true, then
+
+  i.Let thisValue be GetBase(ref).
+
+b.Else, the base of ref is an Environment Record
+
+  i.Let thisValue be the result of calling the ImplicitThisValue concrete method of GetBase(ref).
+</code></pre>
+<p>7.Else, Type(ref) is not Reference.</p>
+<pre><code>a. Let thisValue be undefined.
+</code></pre>
+<p>让我们描述一下：</p>
+<p>1.计算 MemberExpression 的结果赋值给 ref</p>
+<p>2.判断 ref 是不是一个 Reference 类型</p>
+<pre><code>2.1 如果 ref 是 Reference，并且 IsPropertyReference(ref) 是 true, 那么 this 的值为 GetBase(ref)
+
+2.2 如果 ref 是 Reference，并且 base value 值是 Environment Record, 那么this的值为 ImplicitThisValue(ref)
+
+2.3 如果 ref 不是 Reference，那么 this 的值为 undefined
+</code></pre>
+<h2 id="具体分析"><a href="#具体分析" class="headerlink" title="具体分析"></a>具体分析</h2><p>让我们一步一步看：</p>
+<p>&nbsp;&nbsp;1.计算 MemberExpression 的结果赋值给 ref<br>什么是 MemberExpression？看规范 11.2 Left-Hand-Side Expressions：</p>
+<p>MemberExpression :</p>
+<ul>
+<li><p>PrimaryExpression // 原始表达式 可以参见《JavaScript权威指南第四章》</p>
+</li>
+<li><p>FunctionExpression // 函数定义表达式</p>
+</li>
+<li><p>MemberExpression [ Expression ] // 属性访问表达式</p>
+</li>
+<li><p>MemberExpression . IdentifierName // 属性访问表达式</p>
+</li>
+<li><p>new MemberExpression Arguments // 对象创建表达式</p>
+</li>
+</ul>
+<p>举个例子：</p>
+<pre><code>function foo() &#123;
+    console.log(this)
+&#125;
+
+foo(); // MemberExpression 是 foo
+
+function foo() &#123;
+    return function() &#123;
+        console.log(this)
+    &#125;
+&#125;
+
+foo()(); // MemberExpression 是 foo()
+
+var foo = &#123;
+    bar: function () &#123;
+        return this;
+    &#125;
+&#125;
+
+foo.bar(); // MemberExpression 是 foo.bar
+</code></pre>
+<p>所以简单理解 MemberExpression 其实就是()左边的部分。</p>
+<p>2.判断 ref 是不是一个 Reference 类型。</p>
+<p>关键就在于看规范是如何处理各种 MemberExpression，返回的结果是不是一个Reference类型。</p>
+<p>举最后一个例子：</p>
+<pre><code>var value = 1;
+
+var foo = &#123;
+value: 2,
+bar: function () &#123;
+    return this.value;
+&#125;
+&#125;
+
+//示例1
+console.log(foo.bar());
+//示例2
+console.log((foo.bar)());
+//示例3
+console.log((foo.bar = foo.bar)());
+//示例4
+console.log((false || foo.bar)());
+//示例5
+console.log((foo.bar, foo.bar)());
+</code></pre>
+<p>foo.bar()</p>
+<p>在示例 1 中，MemberExpression 计算的结果是 foo.bar，那么 foo.bar 是不是一个 Reference 呢？</p>
+<p>查看规范 11.2.1 Property Accessors，这里展示了一个计算的过程，什么都不管了，就看最后一步：</p>
+<pre><code>Return a value of type Reference whose base value is baseValue and whose referenced name is 
+propertyNameString, and whose strict mode flag is strict.
+</code></pre>
+<p>我们得知该表达式返回了一个 Reference 类型！</p>
+<p>根据之前的内容，我们知道该值为：</p>
+<pre><code>var Reference = &#123;
+base: foo,
+name: &#39;bar&#39;,
+strict: false
+&#125;;
+</code></pre>
+<p>接下来按照 2.1 的判断流程走：</p>
+<pre><code>2.1 如果 ref 是 Reference，并且 IsPropertyReference(ref) 是 true, 那么 this 的值为 GetBase(ref)
+</code></pre>
+<p>该值是 Reference 类型，那么 IsPropertyReference(ref) 的结果是多少呢？</p>
+<p>前面我们已经铺垫了 IsPropertyReference 方法，如果 base value 是一个对象，结果返回 true。</p>
+<p>base value 为 foo，是一个对象，所以 IsPropertyReference(ref) 结果为 true。</p>
+<p>这个时候我们就可以确定 this 的值了：</p>
+<pre><code>this = GetBase(ref)，
+</code></pre>
+<p>GetBase 也已经铺垫了，获得 base value 值，这个例子中就是foo，所以 this 的值就是 foo ，示例1的结果就是 2！</p>
+<p>唉呀妈呀，为了证明 this 指向foo，真是累死我了！但是知道了原理，剩下的就更快了。</p>
+<h2 id="foo-bar"><a href="#foo-bar" class="headerlink" title="(foo.bar)()"></a>(foo.bar)()</h2><p>看示例2：</p>
+<pre><code>console.log((foo.bar)());
+</code></pre>
+<p>foo.bar 被 () 包住，查看规范 11.1.6 The Grouping Operator</p>
+<p>直接看结果部分：</p>
+<pre><code>Return the result of evaluating Expression. This may be of type Reference.
+
+NOTE This algorithm does not apply GetValue to the result of evaluating Expression.
+</code></pre>
+<p>实际上 () 并没有对 MemberExpression 进行计算，所以其实跟示例 1 的结果是一样的。</p>
+<p>(foo.bar = foo.bar)()<br>看示例3，有赋值操作符，查看规范 11.13.1 Simple Assignment ( = ):</p>
+<p>计算的第三步：</p>
+<pre><code>3.Let rval be GetValue(rref).
+</code></pre>
+<p>因为使用了 GetValue，所以返回的值不是 Reference 类型，</p>
+<p>按照之前讲的判断逻辑：</p>
+<pre><code>2.3 如果 ref 不是Reference，那么 this 的值为 undefined
+</code></pre>
+<p>this 为 undefined，非严格模式下，this 的值为 undefined 的时候，其值会被隐式转换为全局对象。</p>
+<p>(false || foo.bar)()<br>看示例4，逻辑与算法，查看规范 11.11 Binary Logical Operators：</p>
+<p>计算第二步：</p>
+<pre><code>2.Let lval be GetValue(lref).
+</code></pre>
+<p>因为使用了 GetValue，所以返回的不是 Reference 类型，this 为 undefined</p>
+<p>(foo.bar, foo.bar)()<br>看示例5，逗号操作符，查看规范11.14 Comma Operator ( , )</p>
+<p>计算第二步：</p>
+<pre><code>2.Call GetValue(lref).
+</code></pre>
+<p>因为使用了 GetValue，所以返回的不是 Reference 类型，this 为 undefined</p>
+<h2 id="揭晓结果"><a href="#揭晓结果" class="headerlink" title="揭晓结果"></a>揭晓结果</h2><p>所以最后一个例子的结果是：</p>
+<pre><code>var value = 1;
+
+var foo = &#123;
+value: 2,
+bar: function () &#123;
+    return this.value;
+&#125;
+&#125;
+
+//示例1
+console.log(foo.bar()); // 2
+//示例2
+console.log((foo.bar)()); // 2
+//示例3
+console.log((foo.bar = foo.bar)()); // 1
+//示例4
+console.log((false || foo.bar)()); // 1
+//示例5
+console.log((foo.bar, foo.bar)()); // 1
+</code></pre>
+<p>注意：以上是在非严格模式下的结果，严格模式下因为 this 返回 undefined，所以示例 3 会报错。</p>
+<h2 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h2><p>最最后，忘记了一个最最普通的情况：</p>
+<pre><code>function foo() &#123;
+    console.log(this)
+&#125;
+
+foo(); 
+</code></pre>
+<p>MemberExpression 是 foo，解析标识符，查看规范 10.3.1 Identifier Resolution，会返回一个 Reference 类型的值：</p>
+<pre><code>var fooReference = &#123;
+    base: EnvironmentRecord,
+    name: &#39;foo&#39;,
+    strict: false
+&#125;;
+</code></pre>
+<p>接下来进行判断：</p>
+<pre><code>2.1 如果 ref 是 Reference，并且 IsPropertyReference(ref) 是 true, 那么 this 的值为 GetBase(ref)
+</code></pre>
+<p>因为 base value 是 EnvironmentRecord，并不是一个 Object 类型，还记得前面讲过的 base value 的取值可能吗？ 只可能是 undefined, an Object, a Boolean, a String, a Number, 和 an environment record 中的一种。</p>
+<p>IsPropertyReference(ref) 的结果为 false，进入下个判断：</p>
+<pre><code>2.2 如果 ref 是 Reference，并且 base value 值是 Environment Record, 那么this的值为 ImplicitThisValue(ref)
+</code></pre>
+<p>base value 正是 Environment Record，所以会调用 ImplicitThisValue(ref)</p>
+<p>查看规范 10.2.1.1.6，ImplicitThisValue 方法的介绍：该函数始终返回 undefined。</p>
+<p>所以最后 this 的值就是 undefined。</p>
+<p>多说一句<br>尽管我们可以简单的理解 this 为调用函数的对象，如果是这样的话，如何解释下面这个例子呢？</p>
+<pre><code>var value = 1;
+
+var foo = &#123;
+value: 2,
+bar: function () &#123;
+    return this.value;
+&#125;
+&#125;
+console.log((false || foo.bar)()); // 1
+</code></pre>
+<p>此外，又如何确定调用函数的对象是谁呢？在写文章之初，我就面临着这些问题，最后还是放弃从多个情形下给大家讲解 this 指向的思路，而是追根溯源的从 ECMASciript 规范讲解 this 的指向，尽管从这个角度写起来和读起来都比较吃力，但是一旦多读几遍，明白原理，绝对会给你一个全新的视角看待 this 。而你也就能明白，尽管 foo() 和 (foo.bar = foo.bar)() 最后结果都指向了 undefined，但是两者从规范的角度上却有着本质的区别。</p>
+<p>此篇讲解执行上下文的 this，即便不是很理解此篇的内容，依然不影响大家了解执行上下文这个主题下其他的内容。所以，依然可以安心的看下一篇文章。</p>
+<p>因为实在太高级了,笔者实在不知如何描述,也不知道该说什么,所以就该文章的结尾部分捞两句,不敢在大佬面前瞎BB😂😂😂😂</p>
+<h1 id="JavaScript深入之执行上下文-8"><a href="#JavaScript深入之执行上下文-8" class="headerlink" title="JavaScript深入之执行上下文 #8"></a>JavaScript深入之执行上下文 #8</h1><h2 id="前言-3"><a href="#前言-3" class="headerlink" title="前言"></a>前言</h2><p>在《JavaScript深入之执行上下文栈》中讲到，当 JavaScript 代码执行一段可执行代码(executable code)时，会创建对应的执行上下文(execution context)。</p>
+<p>对于每个执行上下文，都有三个重要属性：</p>
+<ul>
+<li>变量对象(Variable object，VO)</li>
+<li>作用域链(Scope chain)</li>
+<li>this</li>
+</ul>
+<p>然后分别在《JavaScript深入之变量对象》、《JavaScript深入之作用域链》、《JavaScript深入之从ECMAScript规范解读this》中讲解了这三个属性。</p>
+<p>阅读本文前，如果对以上的概念不是很清楚，希望先阅读这些文章。</p>
+<p>因为，这一篇，我们会结合着所有内容，讲讲执行上下文的具体处理过程。</p>
+<h2 id="思考题-2"><a href="#思考题-2" class="headerlink" title="思考题"></a>思考题</h2><p>在《JavaScript深入之词法作用域和动态作用域》中，提出这样一道思考题：</p>
+<pre><code>var scope = &quot;global scope&quot;;
+function checkscope()&#123;
+    var scope = &quot;local scope&quot;;
+    function f()&#123;
+        return scope;
+    &#125;
+    return f();
+&#125;
+checkscope();
+</code></pre>
+<hr>
+<pre><code>var scope = &quot;global scope&quot;;
+function checkscope()&#123;
+    var scope = &quot;local scope&quot;;
+    function f()&#123;
+        return scope;
+    &#125;
+    return f;
+&#125;
+checkscope()();
+</code></pre>
+<p>两段代码都会打印’local scope’。虽然两段代码执行的结果一样，但是两段代码究竟有哪些不同呢？</p>
+<p>紧接着就在下一篇《JavaScript深入之执行上下文栈》中，讲到了两者的区别在于执行上下文栈的变化不一样，然而，如果是这样笼统的回答，依然显得不够详细，本篇就会详细的解析执行上下文栈和执行上下文的具体变化过程。</p>
+<h2 id="具体执行分析"><a href="#具体执行分析" class="headerlink" title="具体执行分析"></a>具体执行分析</h2><p>我们分析第一段代码：</p>
+<pre><code>var scope = &quot;global scope&quot;;
+function checkscope()&#123;
+    var scope = &quot;local scope&quot;;
+    function f()&#123;
+        return scope;
+    &#125;
+    return f();
+&#125;
+checkscope();
+</code></pre>
+<p>执行过程如下：</p>
+<p>1.执行全局代码，创建全局执行上下文，全局上下文被压入执行上下文栈</p>
+<pre><code>   ECStack = [
+        globalContext
+    ];
+</code></pre>
+<p>2.全局上下文初始化</p>
+<pre><code>globalContext = &#123;
+    VO: [global],
+    Scope: [globalContext.VO],
+    this: globalContext.VO
+&#125;
+</code></pre>
+<p>2.初始化的同时，checkscope 函数被创建，保存作用域链到函数的内部属性[[scope]]</p>
+<pre><code>checkscope.[[scope]] = [
+  globalContext.VO
+];
+</code></pre>
+<p>3.执行 checkscope 函数，创建 checkscope 函数执行上下文，checkscope 函数执行上下文被压入执行上下文栈</p>
+<pre><code>ECStack = [
+    checkscopeContext,
+    globalContext
+];
+</code></pre>
+<p>4.checkscope 函数执行上下文初始化：</p>
+<p>1.复制函数 [[scope]] 属性创建作用域链，</p>
+<p>2.用 arguments 创建活动对象，</p>
+<p>3.初始化活动对象，即加入形参、函数声明、变量声明，</p>
+<p>4.将活动对象压入 checkscope 作用域链顶端。</p>
+<p>同时 f 函数被创建，保存作用域链到 f 函数的内部属性[[scope]]</p>
+<pre><code>checkscopeContext = &#123;
+        AO: &#123;
+            arguments: &#123;
+                length: 0
+            &#125;,
+            scope: undefined,
+            f: reference to function f()&#123;&#125;
+        &#125;,
+        Scope: [AO, globalContext.VO],
+        this: undefined
+    &#125;
+</code></pre>
+<p>5.执行 f 函数，创建 f 函数执行上下文，f 函数执行上下文被压入执行上下文栈</p>
+<pre><code>ECStack = [
+    fContext,
+    checkscopeContext,
+    globalContext
+];
+</code></pre>
+<p>6.f 函数执行上下文初始化, 以下跟第 4 步相同：</p>
+<p>1.复制函数 [[scope]] 属性创建作用域链</p>
+<p>2.用 arguments 创建活动对象</p>
+<p>3.初始化活动对象，即加入形参、函数声明、变量声明</p>
+<p>4.将活动对象压入 f 作用域链顶端</p>
+<pre><code>fContext = &#123;
+    AO: &#123;
+        arguments: &#123;
+            length: 0
+        &#125;
+    &#125;,
+    Scope: [AO, checkscopeContext.AO, globalContext.VO],
+    this: undefined
+&#125;
+</code></pre>
+<p>7.f 函数执行，沿着作用域链查找 scope 值，返回 scope 值</p>
+<p>8.f 函数执行完毕，f 函数上下文从执行上下文栈中弹出</p>
+<pre><code>ECStack = [
+    checkscopeContext,
+    globalContext
+];
+</code></pre>
+<p>9.checkscope 函数执行完毕，checkscope 执行上下文从执行上下文栈中弹出</p>
+<pre><code>ECStack = [
+    globalContext
+];
+</code></pre>
+<p>第二段代码就留给大家去尝试模拟它的执行过程。</p>
+<pre><code>var scope = &quot;global scope&quot;;
+function checkscope()&#123;
+    var scope = &quot;local scope&quot;;
+    function f()&#123;
+        return scope;
+    &#125;
+    return f;
+&#125;
+checkscope()();
+</code></pre>
+<p>不过，在下一篇《JavaScript深入之闭包》中也会提及这段代码的执行过程。</p>
 
   
   
@@ -1390,7 +1811,7 @@ checkscope();
 
 
     <div class='content'>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-text">构造函数创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prototype-%E4%B8%AD%E6%96%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E7%9A%84%EF%BC%8C%E6%9C%80%E5%88%9D%E7%9A%84"><span class="toc-text">prototype  中文：原型的，最初的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto-%E4%B8%AD%E6%96%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E7%9A%84"><span class="toc-text">proto 中文：原始的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constructor-%E4%B8%AD%E6%96%87%EF%BC%9A%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">constructor  中文：构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B"><span class="toc-text">实例与原型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%8E%9F%E5%9E%8B"><span class="toc-text">原型的原型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">原型链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#constructor-NaN"><span class="toc-text">constructor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#proto"><span class="toc-text">__proto__</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E7%9A%84%E6%98%AF%E7%BB%A7%E6%89%BF%E5%90%97%EF%BC%9F"><span class="toc-text">真的是继承吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">静态作用域与动态作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">动态作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%9F"><span class="toc-text">顺序执行？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-text">可执行代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88"><span class="toc-text">执行上下文栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-text">解答思考题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text">变量对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">全局上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">函数上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text">执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">进入执行上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-text">代码执行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98-1"><span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80-1"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="toc-text">作用域链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA"><span class="toc-text">函数创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%BF%80%E6%B4%BB"><span class="toc-text">函数激活</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%8B%E4%B8%80%E6%8D%8B"><span class="toc-text">捋一捋</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80-2"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Types"><span class="toc-text">Types</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="toc-text">构造函数创建对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prototype-%E4%B8%AD%E6%96%87%EF%BC%9A%E5%8E%9F%E5%9E%8B%E7%9A%84%EF%BC%8C%E6%9C%80%E5%88%9D%E7%9A%84"><span class="toc-text">prototype  中文：原型的，最初的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proto-%E4%B8%AD%E6%96%87%EF%BC%9A%E5%8E%9F%E5%A7%8B%E7%9A%84"><span class="toc-text">proto 中文：原始的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constructor-%E4%B8%AD%E6%96%87%EF%BC%9A%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-text">constructor  中文：构造函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E4%BE%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B"><span class="toc-text">实例与原型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%8E%9F%E5%9E%8B"><span class="toc-text">原型的原型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E9%93%BE"><span class="toc-text">原型链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#constructor-NaN"><span class="toc-text">constructor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#proto"><span class="toc-text">__proto__</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E7%9A%84%E6%98%AF%E7%BB%A7%E6%89%BF%E5%90%97%EF%BC%9F"><span class="toc-text">真的是继承吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E4%B8%8E%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">静态作用域与动态作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-text">动态作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C%EF%BC%9F"><span class="toc-text">顺序执行？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-text">可执行代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%A0%88"><span class="toc-text">执行上下文栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94%E6%80%9D%E8%80%83%E9%A2%98"><span class="toc-text">解答思考题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%AF%B9%E8%B1%A1"><span class="toc-text">变量对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">全局上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">函数上下文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-text">执行过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">进入执行上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C"><span class="toc-text">代码执行</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98-1"><span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80-1"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE"><span class="toc-text">作用域链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA"><span class="toc-text">函数创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E6%BF%80%E6%B4%BB"><span class="toc-text">函数激活</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%8B%E4%B8%80%E6%8D%8B"><span class="toc-text">捋一捋</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80-2"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Types"><span class="toc-text">Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9Athis%E7%9A%84%E5%80%BC"><span class="toc-text">如何确定this的值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%88%86%E6%9E%90"><span class="toc-text">具体分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#foo-bar"><span class="toc-text">(foo.bar)()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%AD%E6%99%93%E7%BB%93%E6%9E%9C"><span class="toc-text">揭晓结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85-1"><span class="toc-text">补充</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80-3"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%A2%98-2"><span class="toc-text">思考题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E6%89%A7%E8%A1%8C%E5%88%86%E6%9E%90"><span class="toc-text">具体执行分析</span></a></li></ol>
     </div>
   </section>
 
