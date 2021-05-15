@@ -1377,7 +1377,7 @@ p.p.h1 {
 }
 span.p.h2,
 p.p.h2 {
-  font-size: 1em;
+  font-size: 34rpx;
   color: var(--color-h2);
   padding-top: 2em;
   border-bottom: 1px solid rgba(68,68,68,0.1);
@@ -2383,7 +2383,7 @@ article#comments #valine_container .vcount {
 }
 article#comments #valine_container .vcount .vnum {
   color: var(--color-p);
-  font-size: 1em;
+  font-size: 34rpx;
 }
 article#comments #valine_container button {
   border: none;
@@ -4786,7 +4786,7 @@ img.lazyload:not(.placeholder).loaded {
   color: #fff;
 }
 .snackbar-content .title {
-  font-size: 1em;
+  font-size: 34rpx;
   font-weight: 600;
 }
 .snackbar-content .action {
