@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://cdn.jsdelivr.net'>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <link rel="preload" href="/css/first.css" as="style">
+  
+
+  <!-- 页面元数据 -->
+  
+  <title>up项目开发经验总结(中期) - 百炼成钢------加油！！！！</title>
+  
+
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/first.css">
+
+  
+
+  
+  <link rel="stylesheet" href="/css/style.css" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css"></noscript>
+  
+
+  <script id="loadcss"></script>
+
+  
+<script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script>
+
+
+<noscript>
+	<style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style>
+    <div class="kill-noscript">
+        <h1><b>抱歉，您的浏览器无法访问本站</b></h1>
+        <h3>本页面需要浏览器支持（启用）JavaScript</h3><br/>
+        <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a>
+    </div>
+</noscript>
+
+</head>
+
+  <body>
+    
+
+<header id="l_header" class="l_header auto shadow blur show" style='opacity: 0' >
+  <div class='container'>
+  <div id='wrapper'>
+    <div class='nav-sub'>
+      <p class="title"></p>
+      <ul class='switcher nav-list-h m-phone' id="pjax-header-nav-list">
+        <li><a id="s-comment" class="fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a id="s-toc" class="s-toc fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main">
+      
+        
+        <a class="title flat-box" target="_self" href='/'>
+          
+            <img no-lazy class='logo' src='https://7.dusays.com/2021/03/06/a093a1f73321d.jpg'/>
+          
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='nav-list-h m-pc'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-home fa-fw fa-fw'></i>首页
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-cube fa-fw fa-fw fa-fw'></i>项目
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fa-fw fa fa-bars fa-fw fa-fw'></i>时间轴
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fa-paper-plane-o fa-fw'></i>娱乐
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=https://www.autopiano.cn/
+                  
+                  
+                  
+                    id="https:wwwautopianocn"
+                  >
+                  自由钢琴
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=https://github.com/volantis-x/hexo-theme-volantis/releases/
+                  
+                  
+                  
+                    id="https:githubcomvolantis-xhexo-theme-volantisreleases"
+                  >
+                  更新日志
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li class='header'>
+                有疑问？
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fa fa-at fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      <div class="m_search">
+        <form name="searchform" class="form u-search-form">
+          <i class="icon fas fa-search fa-fw"></i>
+          <input type="text" class="input u-search-input" placeholder="Search..." />
+        </form>
+      </div>
+
+			<ul class='switcher nav-list-h m-phone'>
+				
+					<li><a class="s-search fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li>
+          <a class="s-menu fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a>
+          <ul class="menu-phone list-v navigation white-box">
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  <i class='fas fa-home fa-fw fa-fw'></i>首页
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/categories/
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  <i class='fas fa-cube fa-fw fa-fw fa-fw'></i>项目
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/tags/
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  <i class='fas fa-tags fa-fw'></i>标签
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/archives/
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  <i class='fa-fw fa fa-bars fa-fw fa-fw'></i>时间轴
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/friends/
+                  
+                  
+                  
+                    id="friends"
+                  >
+                  <i class='fas fa-link fa-fw fa-fw'></i>友链
+                </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" 
+                  
+                  
+                  >
+                  <i class='fa-paper-plane-o fa-fw'></i>娱乐
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=https://www.autopiano.cn/
+                  
+                  
+                  
+                    id="https:wwwautopianocn"
+                  >
+                  自由钢琴
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=https://github.com/volantis-x/hexo-theme-volantis/releases/
+                  
+                  
+                  
+                    id="https:githubcomvolantis-xhexo-theme-volantisreleases"
+                  >
+                  更新日志
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li class='header'>
+                有疑问？
+              </li>
+            
+          
+                    
+                  </ul>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover" href=/about/
+                  
+                  
+                  
+                    id="about"
+                  >
+                  <i class='fa fa-at fa-fw'></i>关于
+                </a>
+                
+              </li>
+            
+          
+            
+          </ul>
+        </li>
+			</ul>
+		</div>
+	</div>
+  </div>
+</header>
+
+    <div id="l_body">
+      <div id="l_cover">
+  
+    
+        <div id="full" class='cover-wrapper 1900730132的想法 dock' style="display: none;">
+          
+            <div id='cover-backstretch'></div>
+          
+          <div class='cover-body'>
+  <div class='top'>
+    
+    
+      <p class="title">Hi~~  欢迎来到我的博客~~  </p>
+    
+    
+  </div>
+  <div class='bottom'>
+    <div class='menu navigation'>
+      <div class='list-h'>
+        
+          
+            <a href="/"
+              
+              
+              id="home">
+              <i class='fas fa-home fa-fw fa-fw'></i><p>首页</p>
+            </a>
+          
+            <a href="/archives/"
+              
+              
+              id="archives">
+              <i class='fas fa-list fa-fw fa-fw'></i><p>时间轴</p>
+            </a>
+          
+            <a href="/tags/"
+              
+              
+              id="tags">
+              <i class='fas fa-tags fa-fw fa-fw'></i><p>标签</p>
+            </a>
+          
+            <a href="/friends/"
+              
+              
+              id="friends">
+              <i class='fas fa-link fa-fw fa-fw'></i><p>友链</p>
+            </a>
+          
+            <a href="/about/"
+              
+              
+              id="about">
+              <i class='fa fa-at fa-fw'></i><p>关于</p>
+            </a>
+          
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div id="scroll-down" style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div>
+        </div>
+    
+  
+  </div>
+
+      <div id="safearea">
+        <div class="body-wrapper" id="pjax-container">
+          
+
+<div class='l_main'>
+  <article class="article post white-box reveal md shadow article-type-1900730132的想法" id="1900730132的想法" itemscope itemprop="blogPost">
+  
+
+
+  
+  <div class="article-meta" id="top">
+    
+    
+    
+      <h1 class="title">
+        up项目开发经验总结(中期)
+      </h1>
+      <div class='new-meta-box'>
+        
+          
+            
+<div class='new-meta-item author'>
+  <a class='author' target="_blank" href="https://redhat123456.github.io/" rel="nofollow noopener">
+    <img no-lazy src="https://avatars.githubusercontent.com/u/57751257?s=460&u=634fb3d9085fd46aead74e7d0db0ae3d1d933f3f&v=4">
+    <p>tanger</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class='new-meta-item category'>
+    <a class='notlink'>
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <a class="category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">项目开发</a><span class="sep"></span><a class="category-link" href="/categories/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+    <p>发布于：2021年3月11日</p>
+  </a>
+</div>
+
+          
+        
+          
+            <div class="new-meta-item date" itemprop="dateUpdated" datetime="2021-03-12T13:02:58+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：2021年3月12日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  <div class="new-meta-item browse leancloud">
+    <a class='notlink'>
+      
+      <div id="lc-pv" data-title="up项目开发经验总结(中期)" data-path="/2021/03/11/up%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E7%BB%8F%E9%AA%8C-%E4%B8%AD%E6%9C%9F/">
+        <i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+        <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+        次浏览
+      </div>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+  <div class="new-meta-item wordcount">
+    <a class='notlink'>
+      <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
+      <p>字数：2.6k字</p>
+    </a>
+  </div>
+  <div class="new-meta-item readtime">
+    <a class='notlink'>
+      <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
+      <p>时长：9分钟</p>
+    </a>
+  </div>
+
+
+          
+        
+      </div>
+    
+  </div>
+
+
+  
+  
+  <h3 id="前言"><a href="#前言" class="headerlink" title="前言 "></a><font color="#4682B4">前言 </font></h3><p>&nbsp;&nbsp;&nbsp;&nbsp;开始吹水&gt;&gt;&gt;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是这样子的，我在2021年1月底的时候接到了一个学院派下来的任务(在此非常感谢学院给我的这次机会)，该任务是为了完成一个叫做“大学生创新创业”的比赛，上一个团队的任务是把这个项目的稿子写好写清楚写明白，然后好通过审核，下一年再组织开发完成项目，所以到我手上的时候，任务就变成了开发一款名为“up体能训练”的APP，一开始项目初稿(初稿不是我写的😂😂😂)是打算做APP的，然后习总🤔思来想去认为开发一个APP的难度确实有些大，而且如果让外包公司来做这件事的话实在很难为情，而且外包公司听说并非他们口中的那么好，开发的时候确实不要多少费用(因为他们都有模板，所以花不了多少成本)，但到了后期营运和维护就会特别的麻烦，你要定期交钱他们才肯给你做，总之就是个坑，当时的习学长在基地的学习成果展示的时候一眼看中了我会开发小程序这一作用(当时基地定期的学习成果展示，我展示了我在暑假花了一个月做的小程序)现在想想那个小程序真的是烂😭，事情就巧在这里，他需要一个人来帮助他完成项目的结尾工作，我恰好也需要一个项目来证明自己，所以咱们俩算是<strong>有缘</strong>😄😄😄啊，就这样，我和习学长在讨论了一个晚上之后确定我们的未来项目工作大致方向：</p>
+<p>◆「前端部分」用微信小程序为前端的平台开发好这款APP(所以也确定了我为前端手)</p>
+<p>◆「后端部分」再寻找一名出色的后端手(协助我完成该平台的搭建)</p>
+<p>◆「资源部分」寻找一些资源(例如：健身视频、和内容相关的图片)放在该平台上</p>
+<p>◆「平台应有的功能部分」至于功能就按照之前的项目书、申报书和之前答辩的PPT来确定该项目的功能</p>
+<h3 id="后端手"><a href="#后端手" class="headerlink" title="后端手 "></a><font color="#4682B4">后端手 </font></h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在接下来的日子里，由于习学长还要处理另外两个项目，以及习学长主要精力放在和老师一起进行的算法研究(关于图片处理的一些算法问题)，所以这次他打算找一名后端手协助我完成接下来的任务，后来他找到了我们基地的“<a target="_blank" rel="noopener" href="https://yww52.com/">yww</a>”，他是我们基地算法部的部长(也是我的部长😂😂😂)，他我并不陌生以我对他的印象他就是个宅男，整天玩公主连结😂😂😂，没想到这次的项目经历让我对他的印象发生了180°的转弯，也正是这次经历让我真真正正的了解了他，他确实是宅，他自己也承认，但是他是一个技术宅，他的后端接口响应还算快，也比较稳定，后端代码也写得不错，然后我们的开发团队正式成立，虽然只有两个人，但也算一个独立的开发项目，在寒假的时候我一开始先做前端的登录界面，我一开始的打算是做一个简单的登录界面，我的想法是给后端传输用户填写的账号和密码，后端只要去<strong>比对</strong>然后返回一个参数给我就行了，如图：<br><img src="https://7.dusays.com/2021/03/11/4b8efdd75448d.png" class="lazyload" data-srcset="https://7.dusays.com/2021/03/11/4b8efdd75448d.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后来他看过之后认为这个界面是来搞笑的😅，在实际操作过程中，用户可以直接跳过这步，也就是说用户在这个界面<strong>想登录就登录，不想登录就不登陆</strong>，而且因为没有完善好，没做好<strong>鉴权</strong>的代码，所以我打算做另外一种登录方式登录获取查看用户openid的权限，然后传参给后端进行绑定(加入信息到数据库)，然后我在我一天不断地搜索😁以及深入理解之后写出来了这个(也就是大部分微信小程序正在使用的登录方式，在后端对用户提供的openid进行“<strong>绑定</strong>”)，如图：<br><img src="https://7.dusays.com/2021/03/11/7398f79646043.png" class="lazyload" data-srcset="https://7.dusays.com/2021/03/11/7398f79646043.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个按钮看上去平平无奇，实际上在它的js页面就决定了它和一般地按钮有十分巨大的区别，也正是这次的按钮风波让我真正感觉到js逻辑层的强大魅力，<strong>没有js，前端再好看也是空</strong> ，我是如何写js呢？</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先让我们跳到微信小程序的开发者文档的关于<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html">登录方面的介绍</a></p>
+<p>  &gt; &gt; &gt;下面稍微介绍一下</p>
+<p> <img src="https://7.dusays.com/2021/03/11/59fd7f44267ee.png" class="lazyload" data-srcset="https://7.dusays.com/2021/03/11/59fd7f44267ee.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这就是开发者文档当中的登录流程图，我们可以看到一个完整的流程，虽然看起来复杂，其实我们前端开发者只需要关注那些我们该关注的地方就可了，例如：wx.request() 发送code 以及登录凭证校验接口 那几段话 。</p>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然后我们再结合微信官方的原话：</p>
+<pre><code>    说明：
+    1.调用 wx.login() 获取 临时登录凭证code ，并回传到开发者服务器。
+    2.调用 auth.code2Session 接口，换取 用户唯一标识 OpenID 、 用户在微信开放平台帐号下的唯一标识UnionID（若当前小程序已绑定到微信开放平台帐号） 和 会话密钥 session_key。
+</code></pre>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很显然微信小程序官方想让我们通过wx.login()获取到<strong>登录凭证</strong>(这个东西就好比验证码)，然后我们发送code、appid以及appsecret过去，我们就能拿到用户的openid了，就这么一段话</p>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;然后我来展示一下</p>
+<p> &nbsp; &nbsp; &nbsp; &nbsp;代码如下&gt;&gt;&gt;</p>
+<pre><code>handleGetUserInfo(e)&#123;
+
+wx.login(&#123;  //这里通过wx.login这个方法获取code
+    success(res)&#123;//这里是成功之后返回回来的code，先用res来定义所有返回回来的数据
+        //console.log(&quot;res.code :&quot; +res.code)
+        wx.request(&#123;
+        url: &#39;https://api.weixin.qq.com/sns/jscode2session&#39;,
+        data: &#123;
+            appid: &#39;XXXXXXXXXXXXXXXXX(填你的APPID)&#39;,
+            secret: &#39;XXXXXXXXXXXXXXXXX(填你的secret)&#39;,
+            js_code: res.code,//这个固定
+            grant_type: &#39;authorization_code&#39;//这个也固定
+        &#125;,
+        method:&#39;GET&#39;,
+        success:function(res)&#123;
+            // 获取用户的openid
+            //console.log(res.data);
+            var openId = res.data.openid;
+            //openid: res.data.openid
+                    //请求成功之后，把openid放到储存里面
+                    wx.setStorage(&#123;
+                    key: &#39;openid&#39;, data: openId&#125;)
+            console.log(openId);
+
+            //这里可以根据需要来填写你想要的逻辑层(和后端手好好商量)
+            
+        &#125;
+        &#125;)
+    &#125;
+    &#125;)
+    
+&#125;
+</code></pre>
+<h3 id="在开发过程中的一些实际问题"><a href="#在开发过程中的一些实际问题" class="headerlink" title="在开发过程中的一些实际问题 "></a><font color="#4682B4">在开发过程中的一些实际问题 </font></h3><h4 id="前后端矛盾"><a href="#前后端矛盾" class="headerlink" title="前后端矛盾"></a><font color="#4682B4">前后端矛盾</font></h4><p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在和后端手讨论完关于登录方面的问题之后，我发现我已经能够做好一个简单的js逻辑层了，这只需要稍微的判断一下就可以了😀😀😀，我以为这是我们矛盾就没了，没想到这只是个开始，因为我们这个项目在上一年答辩的时候将该程序的用途说的太过于强大，导致现在有部分功能在实际开发过程中很难去实现(但这我感觉还是其次的)，这是我分析的<strong>出现矛盾的原因</strong>：</p>
+<p> ◆ 「前端不懂后端，后端不懂前端」因为不了解对方的逻辑层面，导致前端以为传的一些数据后端就可以直接实现的功能实际上根本无法实现😅😅😅</p>
+<p> ◆「缺乏实际项目经验」因为之前的项目经验都是通过网上的视频，Github上的项目为模板进行学习，到了实际应用层面有些功能的代码不知如何实现😅😅😅</p>
+<p> ◆「缺乏讨论」项目开始之初没有写《需求分析》和《可行性分析》，也没有花时间和精力🧠讨论导致一些功能我按照我的想法来编写小程序的前端组件，通过用户的操作拿到参数给后端，但是后端根本没法写出相应的算法来接收参数的信息。😅😅😅</p>
+<p>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如：「安排训练计划」中的安排具体每一周的哪一天是可以用来训练，那些天是不做训练，这个方面我和习学长进行讨论根据 上一年的资料，以及实际情况(一个人是不可以连续多天进行高强度的锻炼，他需要适当的休息)，所以我打算弄出个类似于成熟的健身平台“keep”的训练计划界面如下：</p>
+<p><img src="https://7.dusays.com/2021/03/11/ebf3646dde785.png" class="lazyload" data-srcset="https://7.dusays.com/2021/03/11/ebf3646dde785.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p>(具体代码&lt;未完待续&gt;)</p>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户可根据自己的实际情况通过多项选择按钮，我也写了相应的逻辑层:用户点击“立即添加计划”的时候将会触发事件，那个事件会遍历一遍选择器把用户选择的一周中的天数通过字符串的方法(例如：用户选择了“星期一”，“星期二”，“星趣三”，“星期四”)，然后我会根据这个情况打印出字符串“1234”， 传给后端，后端再通过这个数据结合计划的周期，进行相应的在计划日历上的显示，如图：</p>
+<p><img src="https://7.dusays.com/2021/03/11/4edcd51dfa868.png" class="lazyload" data-srcset="https://7.dusays.com/2021/03/11/4edcd51dfa868.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></p>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但是似乎想实现这一步极其的困难🙃，许多方面的问题都是问号，例如如何清楚的表达在数据库？，如何接收我传到后端的参数？这就是这个项目的最大阻力，误解和矛盾无处不在(而我还在这里写文章不去好好做项目😭😭😭)，总之仁者见仁智者见智吧！！！</p>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;后续我会更新博客(未完待续)！！！</p>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;比赛完我会出后期</p>
+
+  
+  
+  
+  
+
+  
+    <div class="prev-next">
+      
+        <a class='prev' href='/2021/03/15/%E5%89%8D%E7%AB%AF%E6%89%8B%E6%8C%87%E5%8D%97/'>
+          <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>前端手指南</p>
+          <p class='content'></p>
+        </a>
+      
+      
+        <a class='next' href='/2021/03/08/markdown%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95/'>
+          <p class='title'>markdown精讲<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+          <p class='content'>一些话&nbsp;&nbsp;&nbsp;&nbsp;Hello~ 我是不干人事的Tanger，首先欢迎你阅读我的文章😀，也很期待各位大佬的指正，如果对这篇文章感兴趣的话，不妨收藏一下⭐本页面...</p>
+        </a>
+      
+    </div>
+  
+</article>
+
+
+  
+
+  <article class="post white-box reveal shadow" id="comments">
+    <p ct><i class='fas fa-comments'></i> 评论</p>
+    
+    <div id="valine_container" class="valine_thread">
+  <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+</div>
+
+  </article>
+
+
+
+
+
+
+</div>
+<aside class='l_side'>
+  
+  
+    
+    
+
+
+
+  <section class="widget toc-wrapper shadow desktop mobile" id="toc-div" >
+    
+  <header>
+    
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
+    
+  </header>
+
+
+    <div class='content'>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E6%89%8B"><span class="toc-text">后端手 </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AE%9E%E9%99%85%E9%97%AE%E9%A2%98"><span class="toc-text">在开发过程中的一些实际问题 </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E5%90%8E%E7%AB%AF%E7%9F%9B%E7%9B%BE"><span class="toc-text">前后端矛盾</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+
+		  
+		  <!--此文件用来存放一些不方便取值的变量-->
+<!--思路大概是将值藏到重加载的区域内-->
+
+<script>
+  window.pdata={}
+  pdata.ispage=false;
+  pdata.postTitle="";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script>
+
+        </div>
+        
+  
+  <footer class="footer clearfix">
+    <br><br>
+    
+      
+        <div class="aplayer-container">
+          
+
+  
+    <meting-js
+      theme='#1BCDFC'
+      autoplay='ture'
+      volume='0.7'
+      loop='all'
+      order='list'
+      fixed='false'
+      list-max-height='320px'
+      server='netease'
+      type='playlist'
+      id='6669822194'
+      list-folded='true'>
+    </meting-js>
+  
+
+
+        </div>
+      
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+          
+            
+          
+            
+          
+        </div>
+      
+    
+      
+        <div><p>博客内容遵循 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p>
+</div>
+      
+    
+      
+        
+          <div><p><span id="lc-sv">本站总访问量为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 次</span> <span id="lc-uv">访客数为 <span id='number'><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span> 人</span></p>
+</div>
+        
+      
+    
+      
+        本站使用
+        <a href="https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1" target="_blank" class="codename">Volantis</a>
+        作为主题
+      
+    
+      
+        <div class='copyright'>
+        <p><a href="/">Copyright © 2017-2020 XXX</a></p>
+
+        </div>
+      
+    
+  </footer>
+
+
+        <a id="s-top" class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+      </div>
+    </div>
+    <div>
+      <script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script>
+<script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css", window.volantis.loadcss);
+  
+  
+</script>
+<!-- required -->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js"></script>
+
+<script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script>
+
+
+<!-- internal -->
+
+  
+  
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js"></script>
+
+    <script type="text/javascript">
+        var imgs=["https://7.dusays.com/2021/05/15/a3a2a067e8c6d.jpg", "https://7.dusays.com/2021/03/19/d54cdd0943701.jpg", "https://7.dusays.com/2021/03/19/7ae3d27567d9c.jpg", "https://7.dusays.com/2021/03/19/5e84244970734.jpg", "https://7.dusays.com/2021/03/19/ffe1eb2d8f548.jpg", "https://7.dusays.com/2021/03/19/dce8ff8ab0a61.jpg", "https://7.dusays.com/2021/03/19/91540a3d0f1c1.jpg", "https://7.dusays.com/2021/03/19/fbc2e2d7567cc.jpg", "https://7.dusays.com/2021/03/19/c9b8fe6cf84a7.jpg", "https://7.dusays.com/2021/03/19/58b3fb0e78813.jpg", "https://7.dusays.com/2021/03/19/7679b7f3c7d79.jpg", "https://7.dusays.com/2021/03/19/d5e1389ed5e3d.jpg", "https://7.dusays.com/2021/03/19/5199b7993b61a.jpg", "https://7.dusays.com/2021/03/19/a27ba9aa6c85e.jpg", "https://7.dusays.com/2021/03/19/ad25febbc7598.jpg", "https://7.dusays.com/2021/03/19/8e9b1b1ecec67.jpg"];
+        if ('false' == 'true') {
+          function shuffle(arr){
+            /*From countercurrent-time*/
+            var n = arr.length;
+            while(n--) {
+              var index = Math.floor(Math.random() * n);
+              var temp = arr[index];
+              arr[index] = arr[n];
+              arr[n] = temp;
+            }
+          }
+          shuffle(imgs);
+        }
+	  function Pjax_backstretch(){
+        
+          $('#cover-backstretch').backstretch(
+            imgs,
+          {
+            duration: "2500",
+            fade: "0"
+          });
+        
+	  }
+	  loadScript("https://cdn.jsdelivr.net/npm/jquery-backstretch@2.1.18/jquery.backstretch.min.js",Pjax_backstretch)
+    </script>
+  
+
+
+
+  
+  
+
+  <div id="rightmenu-wrapper">
+    <ul class="list-v rightmenu" id="rightmenu-content">
+      <li class='option'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-text' onclick="document.execCommand('copy')"><i class='fa fa-copy fa-fw'></i>复制文本</a>
+        <hr id='hr-text'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-href'><i class='fa fa-link fa-fw'></i>复制链接</a>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-open-href'><i class='fa fa-external-link-square-alt fa-fw'></i>在新标签页打开</a>
+        <hr id='hr-href'>
+        <a class='vlts-menu opt fix-cursor-default' id='menu-copy-src'><i class='fa fa-image fa-fw'></i>复制图片地址</a>
+        <hr id='hr-src'>
+      </li>
+      
+        <li class='navigation'>
+          <a class='nav icon-only fix-cursor-default' onclick='history.back()'><i class='fa fa-arrow-left fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' onclick='history.forward()'><i class='fa fa-arrow-right fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' onclick='window.location.reload()'><i class='fa fa-redo fa-fw'></i></a>
+          <a class='nav icon-only fix-cursor-default' href='/'><i class='fa fa-home fa-fw'></i></a>
+        </li>
+      
+      <hr>
+      
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://volantis.js.org/faqs/
+        
+        
+        
+        
+          id="https:volantisjsorgfaqs"
+        >
+        <i class='fa fa-question fa-fw'></i> 常见问题
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://volantis.js.org/examples/
+        
+        
+        
+        
+          id="https:volantisjsorgexamples"
+        >
+        <i class='fa fa-rss fa-fw'></i> 示例博客
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://volantis.js.org/contributors/
+        
+        
+        
+        
+          id="https:volantisjsorgcontributors"
+        >
+        <i class='fa fa-fan fa-spin fa-fw'></i> 加入社区
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://github.com/volantis-x/volantis-docs/
+        
+        
+        
+        
+          id="https:githubcomvolantis-xvolantis-docs"
+        >
+        <i class='fa fa-code-branch fa-fw'></i> 本站源码
+      </a>
+    </li>
+  
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' href=https://github.com/volantis-x/hexo-theme-volantis/
+        
+        
+        
+        
+          id="https:githubcomvolantis-xhexo-theme-volantis"
+        >
+        <i class='fa fa-code-branch fa-fw'></i> 主题源码
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default ' 
+        
+        
+        
+          onclick="document.execCommand('print')"
+        
+        >
+        <i class='fa fa-print fa-fw'></i> 打印页面
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          
+    <li>
+      <a class='vlts-menu fix-cursor-default toggle-mode-btn' 
+        
+        
+        
+        >
+        <i class='fas fa-moon fa-fw'></i> Dark mode
+      </a>
+    </li>
+  
+        
+      
+        
+          <hr>
+        
+      
+        
+          <li class='music name'>
+            <p class='nav music-title fix-cursor-default'></p>
+          </li>
+          <li class='music ctrl'>
+            <a class='nav icon-only backward fix-cursor-default' onclick='aplayerBackward()'><i class='fa fa-step-backward fa-fw'></i></a>
+            <a class='nav icon-only toggle fix-cursor-default' onclick='aplayerToggle()'><i class='fa fa-play fa-fw'></i></a>
+            <a class='nav icon-only forward fix-cursor-default' onclick='aplayerForward()'><i class='fa fa-step-forward fa-fw'></i></a>
+          </li>
+          <li class='music volume'>
+            <a class='nav volume'>
+              <div class="aplayer-volume-bar-wrap">
+                <div class="aplayer-volume-bar fix-cursor-pointer">
+                  <div class="aplayer-volume"></div>
+                  <i class='left fa fa-volume-off fa-fw'></i>
+                  <i class='right fa fa-volume-up fa-fw'></i>
+                </div>
+              </div>
+            </a>
+          </li>
+        
+      
+    </ul>
+  </div>
+
+  <script>
+    window.document.oncontextmenu = function (event) {
+      if (event.ctrlKey) return true;
+      if (/Android|webOS|BlackBerry/i.test(navigator.userAgent)) return true;
+      return popMenu(event);
+    };
+    document.addEventListener("click", function (event) {
+      var mymenu = document.getElementById('rightmenu-wrapper');
+      mymenu.style.display = "none";
+    });
+    function popMenu(event) {
+      var mymenu = document.getElementById('rightmenu-wrapper');
+      var menuContent = document.getElementById('rightmenu-content');
+      var screenWidth = document.documentElement.clientWidth || document.body.clientWidth;
+      var screenHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      mymenu.style.left = event.clientX + "px"; // 获取鼠标位置
+      mymenu.style.top = event.clientY + "px";
+      mymenu.style.display = 'block';
+      if (event.clientX * 2 > screenWidth) {
+        menuContent.classList.add('left');
+      } else {
+        menuContent.classList.remove('left');
+      }
+      if (event.clientY * 2 > screenHeight) {
+        menuContent.classList.add('top');
+      } else {
+        menuContent.classList.remove('top');
+      }
+
+      let hrText = document.getElementById('hr-text');
+      let hrSrc = document.getElementById('hr-src');
+      let hrHref = document.getElementById('hr-href');
+
+      // 选中图片
+      let copySrc = document.getElementById('menu-copy-src');
+      if (copySrc != undefined) {
+        if (event.target.currentSrc) {
+          copySrc.style.display = 'block';
+          copySrc.addEventListener("click", function (e) {
+            copyString(event.target.currentSrc);
+          },{once: true});
+          hrSrc.style.display = 'block';
+        } else {
+          copySrc.style.display = 'none';
+          hrSrc.style.display = 'none';
+        }
+      }
+
+      // 选中按钮
+      // 判断是不是按钮
+      let href = '';
+      if (event.path) {
+        for (i = 0; i < event.path.length; i++) {
+          if (event.path[i].href != undefined && event.path[i].href.length > 0) {
+            href = event.path[i].href;
+          }
+        }
+      }
+
+      let copyText = document.getElementById('menu-copy-text');
+      copyText.style.display = 'none';
+      hrText.style.display = 'none';
+      if (href.length == 0) {
+        // 选中文本
+        if (window.getSelection().toString()) {
+          if ('' == 'true') {
+            copyText.style.display = 'block';
+            hrText.style.display = 'block';
+          }
+        }
+      }
+
+      // 在新标签页打开
+      let openHref = document.getElementById('menu-open-href');
+      if (openHref != undefined) {
+        if (href.length > 0) {
+          openHref.style.display = 'block';
+          openHref.addEventListener("click", function (e) {
+            window.open(href);
+          },{once: true});
+          hrHref.style.display = 'block';
+        } else {
+          openHref.style.display = 'none';
+          hrHref.style.display = 'none';
+        }
+      }
+      // 复制链接
+      let copyHref = document.getElementById('menu-copy-href');
+      if (copyHref != undefined) {
+        if (href.length > 0) {
+          copyHref.style.display = 'block';
+          copyHref.addEventListener("click", function (e) {
+            copyString(href);
+          },{once: true});
+        } else {
+          copyHref.style.display = 'none';
+        }
+      }
+      // 有音乐播放器 see: layout/_third-party/aplayer/script.ejs
+      
+      if(volantis.APlayerLoaded){ // APlayer加载完成？
+        // 如果有aplayer，初始化一下
+        checkAPlayer();
+      }
+      
+      return false; // 该行代码确保系统自带的右键菜单不会被调出
+    }
+    function hideMenu() {
+      document.getElementById('rightmenu-wrapper').style.display = 'none';
+    }
+    function copyString(str) {
+      const input = document.createElement('input');
+      input.setAttribute('readonly', 'readonly');
+      document.body.appendChild(input);
+      input.setAttribute('value', str);
+      input.select();
+      document.execCommand('copy');
+      document.body.removeChild(input);
+    }
+    document.execCommand('click');
+  </script>
+
+
+
+
+<script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.1/source/js/issues.min.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+
+
+  
+
+<script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+
+
+
+
+
+
+
+
+
+  <script>
+  let APlayerController = new Object();
+  APlayerController.id = '6669822194';  // 设定全局音乐播放ID
+  APlayerController.volume = '0.7';
+  loadCSS("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css", window.volantis.loadcss);
+  // APlayer 需要在  MetingJS 之前加载
+  loadScript("https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js")
+  window.volantis.APlayerLoaded=0 // APlayer加载完成状态
+  var checkAPlayer = setInterval(function () {
+    if (!window.APlayer) return // APlayer加载完成？
+	  if ($("#safearea").css("display")!="block") return // 文章内容加载完成？ see: source/css/first.styl
+    clearInterval(checkAPlayer)
+	  if (!window.volantis.APlayerLoaded&&!window.MetingJSElement){ // APlayer只能加载一次
+      window.volantis.APlayerLoaded=1 // APlayer加载完成
+      loadScript("https://cdn.jsdelivr.net/npm/meting@2.0/dist/Meting.min.js") // 加载 MetingJS
+	  }
+  }, 2500) // 按照网速调节差分2.5s
+  // rightmenu see: layout/_partial/rightmenu.ejs
+
+  
+    loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.1/source/js/aplayer.min.js');
+  
+
+</script>
+
+
+
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.1/source/js/valine.min.js"></script>
+
+
+<script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":"3kGVcsxjuW3drxeE2I2plKEP-gzGzoHsz","appKey":"DUFiM6NF3si5qR0e51v99d6H","meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":true,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script>
+
+
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.1/source/js/app.min.js"></script>
+
+
+
+<!-- optional -->
+
+  <script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('https://cdn.jsdelivr.net/npm/hexo-theme-volantis@4.3.1/source/js/search/hexo.min.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script>
+
+
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+<script type="text/javascript">
+$(function () {
+  Waves.attach('.flat-btn', ['waves-button']);
+  Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+  Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+  Waves.attach('.flat-box', ['waves-block']);
+  Waves.attach('.float-box', ['waves-block', 'waves-float']);
+  Waves.attach('.waves-image');
+  Waves.init();
+});
+</script>
+
+
+
+
+
+
+
+  <script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'http://yoursite.com' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'http://yoursite.com' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'http://yoursite.com' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script>
+
+
+
+
+  <script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script>
+
+
+
+
+
+
+
+
+<script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script>
+
+<!-- more -->
+
+ 
+	   
+	    
+
+
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+
+
+<script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script>
+ 
+	  
+    </div>
+  </body>
+</html>
+
+
+<!--单击显示文字-->
+<script type="text/javascript" src="/js/click_show_text.js"></script>
+
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
