@@ -1,40 +1,41 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
     <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/5.0.0-alpha.111'>
-  <meta name="generator" content="Hexo 5.4.0">
-  <meta name="Volantis" content="5.0.0-alpha.111">
-  <meta charset="utf-8">
-  <!-- SEO相关 -->
   
-  <link rel="canonical" href="http://yoursite.com/2020/07/12/acm之递归/"/>
-  <!-- 渲染优化 -->
-    <meta http-equiv='x-dns-prefetch-control' content='on' />
-      <link rel='dns-prefetch' href='https://npm.elemecdn.com'>
-      <link rel="preconnect" href="https://npm.elemecdn.com" crossorigin>
-  <meta name="renderer" content="webkit">
-  <meta name="force-rendering" content="webkit">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <meta http-equiv="Content-Security-Policy" content=" default-src 'self' https:; block-all-mixed-content; base-uri 'self' https:; form-action 'self' https:; worker-src 'self' https:; connect-src 'self' https: *; img-src 'self' data: https: *; media-src 'self' https: *; font-src 'self' data: https: *; frame-src 'self' https: *; manifest-src 'self' https: *; child-src https:; script-src 'self' https: 'unsafe-inline' *; style-src 'self' https: 'unsafe-inline' *; ">
-  <meta name="HandheldFriendly" content="True" >
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
-  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
-  <meta content="telephone=no" name="format-detection">
-  <!-- import head_begin begin -->
-  <!-- import head_begin end -->
-  <!-- Custom Files headBegin begin-->
-  
-  <!-- Custom Files headBegin end-->
-  <link rel="preload" href="/css/style.466f0d46.css" as="style">
-  <link rel="preload" href="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+      <meta name="generator" content="Hexo 5.4.0">
+        <meta name="Volantis" content="5.0.0-alpha.111">
+        <meta charset="utf-8">
+        <!-- SEO相关 -->
+        
+          <link rel="canonical" href="http://yoursite.com/2020/07/12/acm之递归/"/>
+            <!-- 渲染优化 -->
+              <meta http-equiv='x-dns-prefetch-control' content='on' />
+                <link rel='dns-prefetch' href='https://npm.elemecdn.com'>
+                <link rel="preconnect" href="https://npm.elemecdn.com" crossorigin>
+                    <meta name="renderer" content="webkit">
+                    <meta name="force-rendering" content="webkit">
+                    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+                      <meta http-equiv="Content-Security-Policy" content=" default-src 'self' https:; block-all-mixed-content; base-uri 'self' https:; form-action 'self' https:; worker-src 'self' https:; connect-src 'self' https: *; img-src 'self' data: https: *; media-src 'self' https: *; font-src 'self' data: https: *; frame-src 'self' https: *; manifest-src 'self' https: *; child-src https:; script-src 'self' https: 'unsafe-inline' *; style-src 'self' https: 'unsafe-inline' *; ">
+                        <meta name="HandheldFriendly" content="True">
+                        <meta name="apple-mobile-web-app-capable" content="yes">
+                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+                        <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
+                        <meta content="telephone=no" name="format-detection">
+                        <!-- import head_begin begin -->
+                                  <!-- import head_begin end -->
+                                  <!-- Custom Files headBegin begin-->
+                                  
+                                    <!-- Custom Files headBegin end-->
+                                        <link rel="preload" href="/css/style.466f0d46.css" as="style">
+                                        <link rel="preload" href="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/fonts/VarelaRound/VarelaRound-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 <link rel="preload" href="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/fonts/UbuntuMono/UbuntuMono-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-  <!-- feed -->
-  <!-- 页面元数据 -->
-  <title>ACM之递归 - 百炼成钢------加油！！！！</title>
-  <meta name="keywords" content="游戏开发">
-  <meta desc name="description" content="百度百科—递归程序调用自身的编程技巧称为递归（ recursion）。递归做为一种算法在程序设计语言中广泛应用。 一个过程或函数在其定义或说明中有直接或间接调用自身的一种方法，它通常把一个大型复杂的问题层层转化为一个与原问题相似的规模较小的问题来求解，递归策略只需少量的程序就可描述出解题过程所需要的多次重复计算，... - 1900730132谭前程 - 百炼成钢------加油！！！！">
-  
+                                          <!-- feed -->
+                                                            <!-- 页面元数据 -->
+                                                            <title>ACM之递归 - 百炼成钢------加油！！！！</title>
+                                                              <meta name="keywords" content="游戏开发">
+                                                                <meta desc name="description" content="百度百科—递归程序调用自身的编程技巧称为递归（ recursion）。递归做为一种算法在程序设计语言中广泛应用。 一个过程或函数在其定义或说明中有直接或间接调用自身的一种方法，它通常把一个大型复杂的问题层层转化为一个与原问题相似的规模较小的问题来求解，递归策略只需少量的程序就可描述出解题过程所需要的多次重复计算，... - 1900730132谭前程 - 百炼成钢------加油！！！！">
+                                                                  
 <meta property="og:type" content="article">
 <meta property="og:title" content="ACM之递归">
 <meta property="og:url" content="http://yoursite.com/2020/07/12/ACM%E4%B9%8B%E9%80%92%E5%BD%92/">
@@ -48,9 +49,9 @@
 <meta property="article:tag" content="游戏开发">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/org.volantis/blog/favicon/android-chrome-192x192.png">
-  <style>
-    /* 首屏样式 */
-    #safearea {
+                                                                    <style>
+                                                                      /* 首屏样式 */
+                                                                      #safearea {
   display: none;
 }
 /*
@@ -1643,10 +1644,16 @@ ul.list-v >li>a:hover {
   }
 }
 
-  </style>
-  <link rel="stylesheet" href="/css/style.466f0d46.css" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="/css/style.466f0d46.css"></noscript>
-  
+                                                                    </style>
+                                                                    <link rel="stylesheet"
+                                                                      href="/css/style.466f0d46.css"
+                                                                      media="print"
+                                                                      onload="this.media='all';this.onload=null">
+                                                                    <noscript>
+                                                                      <link rel="stylesheet"
+                                                                        href="/css/style.466f0d46.css">
+                                                                    </noscript>
+                                                                        
 <script>
 if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
     document.write(
@@ -1709,7 +1716,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 </noscript>
 
 
-  <script>
+                                                                          <script>
   /************这个文件存放不需要重载的全局变量和全局函数*********/
   window.volantis = {}; // volantis 全局变量
   volantis.debug = false; // 开启调试模式
@@ -1719,7 +1726,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     debug: false,
     cdn: {"js":{"app":"/js/app.fda82528.js","parallax":"/js/plugins/parallax.8bf0ab10.js","rightMenu":"/js/plugins/rightMenu.d9437285.js","rightMenus":"/js/plugins/rightMenus.cd02aa19.js","sites":"/js/plugins/tags/sites.76bf19b8.js","friends":"/js/plugins/tags/friends.f372da57.js","contributors":"/js/plugins/tags/contributors.aec80453.js","search":"/js/search/hexo.0e52f222.js"},"css":{"style":"/css/style.466f0d46.css"}},
     default: {"avatar":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/placeholder/avatar/round/3442075.svg","link":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/placeholder/link/8f277b4ee0ecd.svg","cover":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/placeholder/cover/76b86c0226ffd.svg","image":"https://npm.elemecdn.com/volantis-static@0.0.1649552113628/media/placeholder/image/2659360.svg"},
-    lastupdate: new Date(1653114071956),
+    lastupdate: new Date(1682352984524),
     sidebar: {
       for_page: ["blogger","category","tagcloud","donate"],
       for_post: ["toc"],
@@ -2133,13 +2140,12 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   /******************************************************************************/
 </script>
 
-  <!-- import head_end begin -->
-  <!-- import head_end end -->
-  <!-- Custom Files headEnd begin-->
-  
-  <!-- Custom Files headEnd end-->
-</head>
-  <body itemscope itemtype="http://schema.org/WebPage">
+                                                                            <!-- import head_end begin -->
+                                                                                      <!-- import head_end end -->
+                                                                                      <!-- Custom Files headEnd begin-->
+                                                                                      
+                                                                                        <!-- Custom Files headEnd end-->
+</head>  <body itemscope itemtype="http://schema.org/WebPage">
     <!-- import body_begin begin-->
     <!-- import body_begin end-->
     <!-- Custom Files bodyBegin begin-->
@@ -2178,13 +2184,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/" title="博客"
+                href="/" title="首页"
                   
                   
                   
                     active-action="action-home"
                   >
-                  <i class='fa-solid fa-rss fa-fw'></i>博客
+                  <i class='fas fa-home fa-fw fa-fw'></i>首页
                 </a>
                 
               </li>
@@ -2195,13 +2201,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/categories/" title="分类"
+                href="/categories/" title="项目"
                   
                   
                   
                     active-action="action-categories"
                   >
-                  <i class='fa-solid fa-folder-open fa-fw'></i>分类
+                  <i class='fas fa-cube fa-fw fa-fw fa-fw'></i>项目
                 </a>
                 
               </li>
@@ -2218,7 +2224,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                     active-action="action-tags"
                   >
-                  <i class='fa-solid fa-tags fa-fw'></i>标签
+                  <i class='fas fa-tags fa-fw'></i>标签
                 </a>
                 
               </li>
@@ -2229,13 +2235,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/archives/" title="归档"
+                href="/archives/" title="时间轴"
                   
                   
                   
                     active-action="action-archives"
                   >
-                  <i class='fa-solid fa-archive fa-fw'></i>归档
+                  <i class='fa-fw fa fa-bars fa-fw fa-fw'></i>时间轴
                 </a>
                 
               </li>
@@ -2252,8 +2258,75 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                     active-action="action-friends"
                   >
-                  <i class='fa-solid fa-link fa-fw'></i>友链
+                  <i class='fas fa-link fa-fw fa-fw'></i>友链
                 </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                 href="/" onclick="return false;" title="娱乐"
+                  
+                  
+                  >
+                  <i class='fa-paper-plane-o fa-fw'></i>娱乐
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="https://www.autopiano.cn/" title="自由钢琴"
+                  
+                  
+                  
+                    active-action="action-https:wwwautopianocn"
+                  >
+                  自由钢琴
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="https://github.com/volantis-x/hexo-theme-volantis/releases/" title="更新日志"
+                  
+                  
+                  
+                    active-action="action-https:githubcomvolantis-xhexo-theme-volantisreleases"
+                  >
+                  更新日志
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li class='header'>
+                有疑问？
+              </li>
+            
+          
+                    
+                  </ul>
                 
               </li>
             
@@ -2269,7 +2342,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                     active-action="action-about"
                   >
-                  <i class='fa-solid fa-info-circle fa-fw'></i>关于
+                  <i class='fa fa-at fa-fw'></i>关于
                 </a>
                 
               </li>
@@ -2299,13 +2372,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/" title="博客"
+                href="/" title="首页"
                   
                   
                   
                     active-action="action-home"
                   >
-                  <i class='fa-solid fa-rss fa-fw'></i>博客
+                  <i class='fas fa-home fa-fw fa-fw'></i>首页
                 </a>
                 
               </li>
@@ -2316,13 +2389,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/categories/" title="分类"
+                href="/categories/" title="项目"
                   
                   
                   
                     active-action="action-categories"
                   >
-                  <i class='fa-solid fa-folder-open fa-fw'></i>分类
+                  <i class='fas fa-cube fa-fw fa-fw fa-fw'></i>项目
                 </a>
                 
               </li>
@@ -2339,7 +2412,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                     active-action="action-tags"
                   >
-                  <i class='fa-solid fa-tags fa-fw'></i>标签
+                  <i class='fas fa-tags fa-fw'></i>标签
                 </a>
                 
               </li>
@@ -2350,13 +2423,13 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
             
               <li>
                 <a class="menuitem flat-box faa-parent animated-hover"
-                href="/archives/" title="归档"
+                href="/archives/" title="时间轴"
                   
                   
                   
                     active-action="action-archives"
                   >
-                  <i class='fa-solid fa-archive fa-fw'></i>归档
+                  <i class='fa-fw fa fa-bars fa-fw fa-fw'></i>时间轴
                 </a>
                 
               </li>
@@ -2373,8 +2446,75 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                     active-action="action-friends"
                   >
-                  <i class='fa-solid fa-link fa-fw'></i>友链
+                  <i class='fas fa-link fa-fw fa-fw'></i>友链
                 </a>
+                
+              </li>
+            
+          
+            
+              
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                 href="/" onclick="return false;" title="娱乐"
+                  
+                  
+                  >
+                  <i class='fa-paper-plane-o fa-fw'></i>娱乐
+                </a>
+                
+                  <ul class="list-v">
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="https://www.autopiano.cn/" title="自由钢琴"
+                  
+                  
+                  
+                    active-action="action-https:wwwautopianocn"
+                  >
+                  自由钢琴
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <li>
+                <a class="menuitem flat-box faa-parent animated-hover"
+                target="_blank" rel="noopener" href="https://github.com/volantis-x/hexo-theme-volantis/releases/" title="更新日志"
+                  
+                  
+                  
+                    active-action="action-https:githubcomvolantis-xhexo-theme-volantisreleases"
+                  >
+                  更新日志
+                </a>
+                
+              </li>
+            
+          
+                    
+                      
+            
+              <hr>
+            
+          
+                    
+                      
+            
+              <li class='header'>
+                有疑问？
+              </li>
+            
+          
+                    
+                  </ul>
                 
               </li>
             
@@ -2390,7 +2530,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
                   
                     active-action="action-about"
                   >
-                  <i class='fa-solid fa-info-circle fa-fw'></i>关于
+                  <i class='fa fa-at fa-fw'></i>关于
                 </a>
                 
               </li>
@@ -2422,7 +2562,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
   <div class='top'>
     
     
-      <p class="title">Volantis</p>
+      <p class="title">Hi~~  欢迎来到我的博客~~</p>
     
     
   </div>
@@ -3607,7 +3747,7 @@ afterGetNum = nextStartNum + GiveNum;  以此使用递归算法可以算�
 
 
   <script>
-  let imgs = ["http://124.223.193.89:3000/21.jpg","http://124.223.193.89:3000/27.jpg","http://124.223.193.89:3000/34.jpg","http://124.223.193.89:3000/5.jpg","http://124.223.193.89:3000/32.jpg","http://124.223.193.89:3000/20.jpg","http://124.223.193.89:3000/22.jpg","http://124.223.193.89:3000/11.jpg","http://124.223.193.89:3000/12.jpg","http://124.223.193.89:3000/28.jpg","http://124.223.193.89:3000/30.jpg","http://124.223.193.89:3000/9.jpg","http://124.223.193.89:3000/10.jpg","http://124.223.193.89:3000/1.jpg","http://124.223.193.89:3000/23.jpg","http://124.223.193.89:3000/3.jpg","http://124.223.193.89:3000/4.jpg","http://124.223.193.89:3000/16.jpg","http://124.223.193.89:3000/8.jpg","http://124.223.193.89:3000/2.jpg","http://124.223.193.89:3000/26.jpg"];
+  let imgs = ["https://github.com/redhat123456/pohots/blob/master/blog/2.jpg","https://github.com/redhat123456/pohots/blob/master/blog/4.png","https://github.com/redhat123456/pohots/blob/master/blog/5.jpg","https://github.com/redhat123456/pohots/blob/master/blog/3.jpg","https://github.com/redhat123456/pohots/blob/master/blog/1.jpg"];
   let index = 0;
   let IntervalParallax = null;
 
