@@ -1,0 +1,346 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解 | [百炼成钢]--加油Tanger，相信自己</title><meta name="author" content="Tanger"><meta name="copyright" content="Tanger"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解这次比赛简直绝了，A 到 E 五道题一道不会，就最后的 F 题打牌会，呜呜呜，还是多刷刷算法题吧。 A: 奇数和数组题目描述： 给你一个由 n 个整数组成的数组 a。在一次移动中，您可以选择两个下标 (1 \leq i, j \leq n)，且 (i \neq j)，并且设置 (a_i :&#x3D; a_j)。您可以执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解">
+<meta property="og:url" content="http://tanger.ltd/2020/07/25/11-ACM-middlecollege-7-25/index.html">
+<meta property="og:site_name" content="[百炼成钢]--加油Tanger，相信自己">
+<meta property="og:description" content="桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解这次比赛简直绝了，A 到 E 五道题一道不会，就最后的 F 题打牌会，呜呜呜，还是多刷刷算法题吧。 A: 奇数和数组题目描述： 给你一个由 n 个整数组成的数组 a。在一次移动中，您可以选择两个下标 (1 \leq i, j \leq n)，且 (i \neq j)，并且设置 (a_i :&#x3D; a_j)。您可以执行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2025/07/22/xGWbqDXVIQFZr7s.png">
+<meta property="article:published_time" content="2020-07-25T01:50:00.000Z">
+<meta property="article:modified_time" content="2025-08-28T12:07:36.222Z">
+<meta property="article:author" content="Tanger">
+<meta property="article:tag" content="作业题解">
+<meta property="article:tag" content="ACM 算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2025/07/22/xGWbqDXVIQFZr7s.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解",
+  "url": "http://tanger.ltd/2020/07/25/11-ACM-middlecollege-7-25/",
+  "image": "https://s2.loli.net/2025/07/22/xGWbqDXVIQFZr7s.png",
+  "datePublished": "2020-07-25T01:50:00.000Z",
+  "dateModified": "2025-08-28T12:07:36.222Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Tanger",
+      "url": "http://tanger.ltd"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://github.com/redhat123456/pohots/blob/master/logo.icon?raw=true"><link rel="canonical" href="http://tanger.ltd/2020/07/25/11-ACM-middlecollege-7-25/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous" referrerpolicy="no-referrer" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://s2.loli.net/2025/07/10/8eIanE1LU2qspTW.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(https://s2.loli.net/2025/07/22/xGWbqDXVIQFZr7s.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">[百炼成钢]--加油Tanger，相信自己</span></a><a class="nav-page-title" href="/"><span class="site-name">桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-25T01:50:00.000Z" title="发表于 2020年-07月-25日 09时:50分:00秒">2020年-07月-25日</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-28T12:07:36.222Z" title="更新于 2025年-08月-28日 20时:07分:36秒">2025年-08月-28日</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/">算法入门</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="桂林电子科技大学-ACM-暑假课-7-月-25-日-ACM-期中考试题解"><a href="#桂林电子科技大学-ACM-暑假课-7-月-25-日-ACM-期中考试题解" class="headerlink" title="桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解"></a>桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解</h1><p>这次比赛简直绝了，A 到 E 五道题一道不会，就最后的 F 题打牌会，呜呜呜，还是多刷刷算法题吧。</p>
+<h2 id="A-奇数和数组"><a href="#A-奇数和数组" class="headerlink" title="A: 奇数和数组"></a>A: 奇数和数组</h2><p><strong>题目描述：</strong></p>
+<p>给你一个由 n 个整数组成的数组 a。<br>在一次移动中，您可以选择两个下标 (1 \leq i, j \leq n)，且 (i \neq j)，并且设置 (a_i :&#x3D; a_j)。<br>您可以执行这样的移动任意次数（可能是零次）。您可以在不同的操作中选择不同的下标。<br>操作 :&#x3D; 是赋值的操作（即选择 i 和 j 并用 (a_j) 替换 (a_i)）。<br>你的任务是判断是否有可能得到一个元素之和为奇数（不能被 2 整除）的数组。</p>
+<p><strong>输入：</strong></p>
+<ul>
+<li>第一行包含一个整数 t（(1 \leq t \leq 2000)）——测试用例的数量。</li>
+<li>接下来的 2t 行描述了测试用例。</li>
+<li>测试用例的第一行包含一个整数 n（(1 \leq n \leq 2000)）——数组中元素的数量。</li>
+<li>测试用例的第二行包含 n 个整数 (a_1, a_2, \dots, a_n)（(1 \leq a_i \leq 2000)），保证所有测试用例的 n 之和不超过 2000（(\sum n \leq 2000)）。</li>
+</ul>
+<p><strong>输出：</strong></p>
+<p>对于每个测试用例，如果能得到一个奇数元素和的数组，输出 <code>&quot;YES&quot;</code>（不加引号），否则输出 <code>&quot;NO&quot;</code>。</p>
+<p><strong>样例输入：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">2</span><br><span class="line">2 3</span><br><span class="line">4</span><br><span class="line">2 2 8 8</span><br><span class="line">3</span><br><span class="line">3 3 3</span><br><span class="line">4</span><br><span class="line">5 5 5 5</span><br><span class="line">4</span><br><span class="line">1 1 1 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>样例输出：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">YES</span><br><span class="line">NO</span><br><span class="line">YES</span><br><span class="line">NO</span><br><span class="line">NO</span><br></pre></td></tr></table></figure>
+
+<h2 id="B-暗箱操作"><a href="#B-暗箱操作" class="headerlink" title="B: 暗箱操作"></a>B: 暗箱操作</h2><p><strong>题目描述：</strong></p>
+<p>有两个英语菜鸡 lzh 和 xzy，每个人所能解决的问题都不一样。每个学期的英语考试到了，对于每一个英语题目都有一个相应的分数且每道题的相应分数 (p_i) 不能小于 1。<br>所有题目的分数总和最低的人就获得挂科重修再来一次，作为 lzh 好朋友的你，为了让 lzh 的英语考试分数比 xzy 高，你需要偷偷操控每题的分数 (p_i)。<br>但是如果 (p_i) 太大，lzh 就会因为作弊被抓住，所以你要做的就是最小化所有英语题目中的最大分数 (p_i)。</p>
+<p><strong>输入：</strong></p>
+<ul>
+<li>第一行包含一个整数 n（(1 \leq n \leq 100)），代表英语题目的数量。</li>
+<li>第二行有 n 个整数 (r_1, r_2, \dots, r_n)（0 ≤ (r_i) ≤ 1），(r_i &#x3D; 1) 意味着 lzh 会第 i 题，(r_i &#x3D; 0) 意味着不会。</li>
+<li>第三行有 n 个整数 (b_1, b_2, \dots, b_n)（0 ≤ (b_i) ≤ 1），(b_i &#x3D; 1) 意味着 xzy 会第 i 题，(b_i &#x3D; 0) 意味着不会。</li>
+</ul>
+<p><strong>输出：</strong></p>
+<ul>
+<li>如果不能通过任何手段让 lzh 的分数大于 xzy 就输出 <code>-1</code>。</li>
+<li>否则输出你在所有项目中修改分数的最大值。</li>
+</ul>
+<p><strong>样例输入：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">1 1 1 0 0</span><br><span class="line">0 1 1 1 1</span><br></pre></td></tr></table></figure>
+
+<p><strong>样例输出：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<p>对于样例来说，你只需要把第一道题的分数改为 3，第二道题的分数改为 1，第三道题的分数改为 3，第四道题的分数改为 1，第五题的分数改为 1。<br>那么 lzh 的得分就是 3+1+3&#x3D;7，而 xzy 的得分是 1+3+1+1&#x3D;6，lzh 的分数就比 xzy 的高了。</p>
+<h2 id="C-简简单单-A-B"><a href="#C-简简单单-A-B" class="headerlink" title="C: 简简单单 A+B"></a>C: 简简单单 A+B</h2><p><strong>题目描述：</strong></p>
+<p>给出三个整数 A, B, N； (1 &lt; A, B, N &lt; 10^9)。<br>我们可以进行如下操作：</p>
+<ul>
+<li>操作 1：让 (A &#x3D; A + B)。</li>
+<li>操作 2：让 (B &#x3D; A + B)。</li>
+</ul>
+<p>问最少需要多少次操作，可以使 (\max(A, B)) 严格大于 N。<br>(\max(a,b)) 为 (A,B) 中较大的那个。</p>
+<p><strong>输入：</strong></p>
+<ul>
+<li>第一行一个整数 T 代表测试组数（(1 &lt; T &lt; 100)）。</li>
+<li>接下来 T 行，每行三个整数 A, B, N。</li>
+</ul>
+<p><strong>输出：</strong></p>
+<p>输出 T 行，每行一个整数，代表所需要的最少操作次数。</p>
+<p><strong>样例输入：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">1 2 3</span><br><span class="line">5 4 100</span><br></pre></td></tr></table></figure>
+
+<p><strong>样例输出：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">7</span><br></pre></td></tr></table></figure>
+
+<h2 id="D-淘淘的暗号"><a href="#D-淘淘的暗号" class="headerlink" title="D: 淘淘的暗号"></a>D: 淘淘的暗号</h2><p><strong>题目描述：</strong></p>
+<p>淘淘的暗号为一串由 n 个小写字母组成的字符串 b，原文 a 生成 b 的方法为 a 中从左到右将每个长度为 2 的子串加入到 b 中，例如 a 串为 “abcd”，那么子串从左到右的顺序为 “ab”, “bc”, “cd”，则 b 为 “abbccd”。</p>
+<p><strong>输入：</strong></p>
+<p>输入长度为 n（(3 \leq n \leq 100000)）的暗号 b。</p>
+<p><strong>输出：</strong></p>
+<p>输出原文 a。</p>
+<p><strong>样例输入：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abbaac</span><br></pre></td></tr></table></figure>
+
+<p><strong>样例输出：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abac</span><br></pre></td></tr></table></figure>
+
+<p><strong>参考程序：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="type">char</span> s[<span class="number">100001</span>];</span><br><span class="line">    gets(s);</span><br><span class="line">    n = <span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt;= n - <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; s[i];</span><br><span class="line">        i += <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; s[n - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="E-淘淘的序列"><a href="#E-淘淘的序列" class="headerlink" title="E: 淘淘的序列"></a>E: 淘淘的序列</h2><p><strong>题目描述：</strong></p>
+<p>对于一个长为 n 的数字序列中的每个数字 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，若当 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 为奇数时 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>也为奇数，则称它为淘淘序列。<br>同时，淘淘每次可以将序列中两个任意数字交换位置，求出淘淘需要多少次交换能将一个序列变为淘淘序列。</p>
+<p>注意：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6595em;"></span><span class="mord mathnormal">i</span></span></span></span> 从 0 开始。</p>
+<p><strong>输入:</strong></p>
+<p>第一行输入一个整数 n(1&lt;&#x3D;n&lt;&#x3D;100000)，第二行输入 n 个整数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (0&lt;&#x3D;i&lt;&#x3D;n-1)</p>
+<p><strong>输出:</strong></p>
+<p>输出一个整数，代表淘淘最小需要做多少次交换操作能将给定序列变为淘淘序列，若不能变成淘淘序列输出-1</p>
+<p><strong>样例输入:</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">3 2 7 6</span><br></pre></td></tr></table></figure>
+
+<p><strong>样例输出:</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<h2 id="F-打牌"><a href="#F-打牌" class="headerlink" title="F: 打牌"></a>F: 打牌</h2><p><strong>题目描述：</strong></p>
+<p>sys 和 llf 在打牌，他们觉得现有的玩法太简单，所以他们玩起了摸牌游戏<br>规则如下：</p>
+<p>有 N 张牌<br>两个人轮流摸牌 每次摸牌的数量只能是 2 的幂次 比如 1，2，4，8，16 ……<br>当轮到某人摸牌，此人若无牌可摸，败<br>llf 先手摸牌<br>他们两人都会采取最优策略去摸牌</p>
+<p><strong>输入:</strong></p>
+<p>第一行一个数 T 代表测试组数</p>
+<p>下面 N 行每行一个数 N 意义如题所示</p>
+<p><strong>输出:</strong></p>
+<p>输出 T 行</p>
+<p>若先手赢 输出 llfnb</p>
+<p>否则输出 sysnb</p>
+<p><strong>样例输入:</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">4</span><br><span class="line">1</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">12</span><br></pre></td></tr></table></figure>
+
+<p><strong>样例输出:</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">llfnb</span><br><span class="line">sysnb</span><br><span class="line">llfnb</span><br><span class="line">sysnb</span><br></pre></td></tr></table></figure>
+
+<p><strong>参考程序：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line">using namespace <span class="built_in">std</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> t,i,ans=<span class="number">1</span>;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> l;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        ans=<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;l;</span><br><span class="line">            <span class="keyword">if</span>(l%<span class="number">3</span>==<span class="number">0</span>)</span><br><span class="line">                ans=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(ans==<span class="number">0</span>)</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;sysnb&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;llfnb&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>题解:</strong></p>
+<p>根据案例不难清楚当牌的数量为 3 的倍数时，都是先手输，所以可知，该问题被简化成倍数问题，在比赛中这样的规律可能不易发觉，要认真审题</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://tanger.ltd">Tanger</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://tanger.ltd/2020/07/25/11-ACM-middlecollege-7-25/">http://tanger.ltd/2020/07/25/11-ACM-middlecollege-7-25/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://tanger.ltd" target="_blank">[百炼成钢]--加油Tanger，相信自己</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%BD%9C%E4%B8%9A%E9%A2%98%E8%A7%A3/">作业题解</a><a class="post-meta__tags" href="/tags/ACM-%E7%AE%97%E6%B3%95/">ACM 算法</a></div><div class="post-share"><div class="social-share" data-image="https://s2.loli.net/2025/07/22/xGWbqDXVIQFZr7s.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/08/12/12-wechat-miniapp-md/" title="[技术干货] JavaScript 开发微信小程序这样行不行？"><img class="cover" src="https://s2.loli.net/2025/07/22/tF39TnYBjsWRdMh.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">[技术干货] JavaScript 开发微信小程序这样行不行？</div></div><div class="info-2"><div class="info-item-1">JavaScript 开发微信小程序注册小程序开发小程序的第一步是注册账号。访问微信公众平台：https://mp.weixin.qq.com/，可以看到账号分为三类：  服务号 订阅号 小程序  这里我们只关注“小程序”，点击进入即可注册。 配置服务器微信小程序本身已经提供了大量的 API 接口，满足大多数功能需求。但如果已有后端服务，也可以直接在小程序中调用已有接口，甚至直接嵌入已有网页。 如果有这方面需求，首先需要在小程序控制台做一些设置： 1. appid 和 AppSecret在“小程序设置” - “开发者 ID”页面可以获取：  AppID：小程序唯一标识； AppSecret：开发使用的秘钥。  这些在后续开发中非常关键。 2. 服务器域名配置（本节暂略，可在后续配置中根据接口部署情况进行设置） 关联设置可以在小程序后台将其与公众号或微信开放平台账号绑定。 绑定的好处包括：  公众号菜单可跳转到小程序； 小程序内可跳转公众号； 获取 UnionID（需用户关注公众号并绑定开放平台）。  ⚠️ 注意：如果用户仅使用小程序而没有关注公众号，是无法获取 UnionID 的...</div></div></div></a><a class="pagination-related" href="/2020/07/25/09-ACM-algorithm-search/" title="ACM 算法入门 · 搜索篇：优化向"><img class="cover" src="https://s2.loli.net/2025/07/22/yq2BdwmtZcvgQfH.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">ACM 算法入门 · 搜索篇：优化向</div></div><div class="info-2"><div class="info-item-1">🧭 ACM 算法入门 · 搜索篇（优化向）本篇将带你从搜索算法基础出发，结合实战与技巧，掌握高效的搜索策略与代码实现。  1️⃣ 什么是搜索算法？搜索算法是一种通过穷举可能状态，寻找满足条件解的算法方式。  搜索过程 &#x3D; 构造解答树 + 找到目标节点  它利用计算机的高性能，遍历问题的状态空间，找到通向目标的路径或解。  2️⃣ 深度优先搜索（DFS）🔍 定义深度优先搜索（Depth First Search）是一种回溯型搜索方法，形象比喻为“不撞南墙不回头”。 🧠 原理说明 从某个起点出发，尝试所有可能路径 沿路径深入，直到到达终点或走不通 回溯，换一条路径再试  ✨ 搜索流程： 标记当前位置为“已走” 遍历四个方向 &#x2F; 所有可能状态 若合法、未访问 -&gt; 递归进入 回溯：搜索完该路径后恢复现场  🧩 示例场景：从起点 A 出发，目标是到达 G，若有多个路径，通过 DFS 可遍历所有可能路径。 📦 模板代码12345678910111213void dfs(int x, int y) &#123;    if (到达终点) &#123;   ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/07/15/06-ACM-homework-7.21/" title="桂林电子科技大学 ACM 暑假课 | 7 月 21 日 ACM 作业题解"><img class="cover" src="https://s2.loli.net/2025/07/22/yq2BdwmtZcvgQfH.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020年-07月-15日</div><div class="info-item-2">桂林电子科技大学 ACM 暑假课 | 7 月 21 日 ACM 作业题解</div></div><div class="info-2"><div class="info-item-1">桂林电子科技大学暑假课 ACM 作业题解合集本文整理了桂电暑假 ACM 训练营 7 月 21 日作业的 10 道典型题目及参考代码，并附带简明题解说明，供学习和复习使用。  1. A 简单数学题：判断数字各位是否全不相同题目描述： 给定一个数字 n，判断它的每一位数字是否都不相同。 输入：一个数字 n，满足 1 &lt; n &lt; 1000000 输出：若各位数字均不相同，输出 YES，否则 NO。 参考代码（C）： 1234567891011121314151617#include&lt;stdio.h&gt;#include&lt;stdbool.h&gt;int main() &#123;    char A[10];    bool used[300] = &#123;false&#125;;    scanf(&quot;%s&quot;, A);    for (int i = 0; A[i] != &#x27;\0&#x27;; i++) &#123;        if (used[A[i]]) &#123;            printf(&quot;N...</div></div></div></a><a class="pagination-related" href="/2020/07/22/07-ACM-homework-7.22/" title="桂林电子科技大学 ACM 暑假课 | 7 月 22 日 ACM 作业题解"><img class="cover" src="https://s2.loli.net/2025/07/22/c45g9yNPmdn1TJf.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020年-07月-22日</div><div class="info-item-2">桂林电子科技大学 ACM 暑假课 | 7 月 22 日 ACM 作业题解</div></div><div class="info-2"><div class="info-item-1">A: 讲故事题目描述： 一天，天上掉下来了一个可爱的小妹妹，小妹妹天天缠着你给她讲故事。并且让你在 N 天内给她讲 K(K ≤ N)个不同小故事。你把你知道的所有 K 个故事从 1 到 K 进行编号。她每天会要求你讲某一个小故事，例如第 i 天她会要求你给他讲第 ai 个小故事。 由于小妹妹有间歇性失忆，所以她可能会在一些天内要求你讲你已经讲过的故事。如果你每天都按照她的要求来的话，可能会出现无法在 N 天内讲完 K 个故事的情况(小妹妹可能没有要求过讲某个故事) 你为了完成任务可能在某些情况下，不得不拒绝她的要求，给她讲其他的小故事。但是你在第 i 天拒绝了小妹妹的请求的话，小妹妹对你的好感度就会下降 b 如何在降低最小好感度的情况下在 N 天内讲完 K 给小故事。请输出最少降低的好感度。 输入：  第一行两个正整数，N K (1≤ K ≤N ≤ 10^5) N 为总天数，K 为需要讲述的故事个数  第二行 N 个正整数 a1 a2 …… an (1 ≤ ai ≤ k) 第 n 天要求的故事序号  第三行 N 个正整数 b1 b2 …… bn(1 ≤ bi ≤ 10^9) 第 ...</div></div></div></a><a class="pagination-related" href="/2020/07/23/08-ACM-homework-7-23/" title="桂林电子科技大学 ACM 暑假课 | 7 月 23 日 ACM 作业题解"><img class="cover" src="https://s2.loli.net/2025/07/22/tF39TnYBjsWRdMh.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020年-07月-23日</div><div class="info-item-2">桂林电子科技大学 ACM 暑假课 | 7 月 23 日 ACM 作业题解</div></div><div class="info-2"><div class="info-item-1">1.A. 找良好数组题目描述给你一个数组 a，下标从 0 开始。如果数组中的每个奇数下标为奇数，且每个偶数下标为偶数，则称其为“好数组”，否则为“坏数组”。你可以任意交换两个元素（可以不相邻）。请你判断是否可以通过最少交换变为好数组，并输出最小交换次数；若无法变成好数组，输出 -1。 输入  第一行一个整数 t（1 ≤ t ≤ 1000）表示测试用例组数。 每组测试用例： 第一行一个整数 n（1 ≤ n ≤ 40）表示数组长度。 第二行 n 个整数 a0, a1, ..., an−1（0 ≤ ai ≤ 1000）。    输出每组数据输出一个整数：能变为好数组的最小交换次数，或 -1 表示无法实现。 样例输入 123456789443 2 7 633 2 61774 9 2 1 18 3 0  样例输出 123421-10   2.B. B 进制加法题目描述给定一个进制 B（2 ≤ B ≤ 36），以及两个 B 进制的正整数，求它们的和（结果仍为 B 进制）。 输入 123第1行：进制 B第2行：第一个 B 进制正整数第3行：第二个 B 进制正整数  输出一个 B 进制的数，表示...</div></div></div></a><a class="pagination-related" href="/2020/07/25/10-ACM-homework-7-25/" title="桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 作业题解"><img class="cover" src="https://s2.loli.net/2025/07/22/C8mD4cpNPyjrHqK.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020年-07月-25日</div><div class="info-item-2">桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 作业题解</div></div><div class="info-2"><div class="info-item-1">桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 作业题解A: 六皇后题目描述： 一个如下的 6×6 的跳棋棋盘，有六个棋子被放置在棋盘上，使得每行、每列有且只有一个，每条对角线（包括两条主对角线的所有平行线）上至多有一个棋子。 行号：1 2 3 4 5 6列号：2 4 6 1 3 5 这只是棋子放置的一个解。请编一个程序找出所有棋子放置的解。并把它们以上面的序列方法输出，解按字典顺序排列。请输出前 3 个解。最后一行是解的总个数。 输入： 一行一个正整数 n，6≤n≤13，表示棋盘是 nxn 大小的。 输出：  前三行为前三个解，每个解的两个数字之间用一个空格隔开。  第四行只有一个数字，表示解的总数。   样例输入： 16  样例输出： 12342 4 6 1 3 53 6 2 5 1 44 1 5 2 6 34  参考程序： 12345678910111213141516171819202122232425262728293031323334353637#include&lt;iostream&gt;using namespace std;int count ...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://s2.loli.net/2025/07/10/8eIanE1LU2qspTW.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Tanger</div><div class="author-info-description">专注于Web前端、PINN、技术成长路径的博客，记录学习过程与实战经验，欢迎交流！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/redhat123456"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A1%82%E6%9E%97%E7%94%B5%E5%AD%90%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6-ACM-%E6%9A%91%E5%81%87%E8%AF%BE-7-%E6%9C%88-25-%E6%97%A5-ACM-%E6%9C%9F%E4%B8%AD%E8%80%83%E8%AF%95%E9%A2%98%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#A-%E5%A5%87%E6%95%B0%E5%92%8C%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.</span> <span class="toc-text">A: 奇数和数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B-%E6%9A%97%E7%AE%B1%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">B: 暗箱操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E7%AE%80%E7%AE%80%E5%8D%95%E5%8D%95-A-B"><span class="toc-number">1.3.</span> <span class="toc-text">C: 简简单单 A+B</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D-%E6%B7%98%E6%B7%98%E7%9A%84%E6%9A%97%E5%8F%B7"><span class="toc-number">1.4.</span> <span class="toc-text">D: 淘淘的暗号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E-%E6%B7%98%E6%B7%98%E7%9A%84%E5%BA%8F%E5%88%97"><span class="toc-number">1.5.</span> <span class="toc-text">E: 淘淘的序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#F-%E6%89%93%E7%89%8C"><span class="toc-number">1.6.</span> <span class="toc-text">F: 打牌</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/12/26-/" title="【碎碎念】"><img src="https://s2.loli.net/2025/07/22/tF39TnYBjsWRdMh.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【碎碎念】"/></a><div class="content"><a class="title" href="/2025/08/12/26-/" title="【碎碎念】">【碎碎念】</a><time datetime="2025-08-12T12:12:12.000Z" title="发表于 2025年-08月-12日 20时:12分:12秒">2025年-08月-12日</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/09/25-Study-in-GUET-master-begin/" title="【碎碎念】2025年，我回到桂电接着读研了"><img src="https://s2.loli.net/2025/07/22/c45g9yNPmdn1TJf.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【碎碎念】2025年，我回到桂电接着读研了"/></a><div class="content"><a class="title" href="/2025/08/09/25-Study-in-GUET-master-begin/" title="【碎碎念】2025年，我回到桂电接着读研了">【碎碎念】2025年，我回到桂电接着读研了</a><time datetime="2025-08-09T12:12:12.000Z" title="发表于 2025年-08月-09日 20时:12分:12秒">2025年-08月-09日</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/04/24-DeepONet-Learning-nonlinear-operators-for-identifying/" title="【每周一论文分享】DeepONet_Learning_nonlinear_operators_for_identifying"><img src="https://s2.loli.net/2025/07/22/UjSZhlRuyDf7Beb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【每周一论文分享】DeepONet_Learning_nonlinear_operators_for_identifying"/></a><div class="content"><a class="title" href="/2025/08/04/24-DeepONet-Learning-nonlinear-operators-for-identifying/" title="【每周一论文分享】DeepONet_Learning_nonlinear_operators_for_identifying">【每周一论文分享】DeepONet_Learning_nonlinear_operators_for_identifying</a><time datetime="2025-08-04T12:12:12.000Z" title="发表于 2025年-08月-04日 20时:12分:12秒">2025年-08月-04日</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/10/19-markdown-zongjie/" title="[技术干货] 一次性带你了解讲完markdown语法🎈✨"><img src="https://s2.loli.net/2025/07/22/xGWbqDXVIQFZr7s.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="[技术干货] 一次性带你了解讲完markdown语法🎈✨"/></a><div class="content"><a class="title" href="/2021/12/10/19-markdown-zongjie/" title="[技术干货] 一次性带你了解讲完markdown语法🎈✨">[技术干货] 一次性带你了解讲完markdown语法🎈✨</a><time datetime="2021-12-10T02:38:50.000Z" title="发表于 2021年-12月-10日 10时:38分:50秒">2021年-12月-10日</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/13/23-wechat-miniapp-developlogo3/" title="[Tanger的开发者日志] 微信开发小程序日志-up体能训练·总结（三）"><img src="https://s2.loli.net/2025/07/22/C8mD4cpNPyjrHqK.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="[Tanger的开发者日志] 微信开发小程序日志-up体能训练·总结（三）"/></a><div class="content"><a class="title" href="/2021/06/13/23-wechat-miniapp-developlogo3/" title="[Tanger的开发者日志] 微信开发小程序日志-up体能训练·总结（三）">[Tanger的开发者日志] 微信开发小程序日志-up体能训练·总结（三）</a><time datetime="2021-06-13T01:44:47.000Z" title="发表于 2021年-06月-13日 09时:44分:47秒">2021年-06月-13日</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By Tanger</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'redhat123456/hexo_blog',
+      'data-repo-id': 'R_kgDOPHmJiA',
+      'data-category-id': 'DIC_kwDOPHmJiM4CtbXz',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

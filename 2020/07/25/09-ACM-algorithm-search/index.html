@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ACM 算法入门 · 搜索篇：优化向 | [百炼成钢]--加油Tanger，相信自己</title><meta name="author" content="Tanger"><meta name="copyright" content="Tanger"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="🧭 ACM 算法入门 · 搜索篇（优化向）本篇将带你从搜索算法基础出发，结合实战与技巧，掌握高效的搜索策略与代码实现。  1️⃣ 什么是搜索算法？搜索算法是一种通过穷举可能状态，寻找满足条件解的算法方式。  搜索过程 &#x3D; 构造解答树 + 找到目标节点  它利用计算机的高性能，遍历问题的状态空间，找到通向目标的路径或解。  2️⃣ 深度优先搜索（DFS）🔍 定义深度优先搜索（Depth">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ACM 算法入门 · 搜索篇：优化向">
+<meta property="og:url" content="http://tanger.ltd/2020/07/25/09-ACM-algorithm-search/index.html">
+<meta property="og:site_name" content="[百炼成钢]--加油Tanger，相信自己">
+<meta property="og:description" content="🧭 ACM 算法入门 · 搜索篇（优化向）本篇将带你从搜索算法基础出发，结合实战与技巧，掌握高效的搜索策略与代码实现。  1️⃣ 什么是搜索算法？搜索算法是一种通过穷举可能状态，寻找满足条件解的算法方式。  搜索过程 &#x3D; 构造解答树 + 找到目标节点  它利用计算机的高性能，遍历问题的状态空间，找到通向目标的路径或解。  2️⃣ 深度优先搜索（DFS）🔍 定义深度优先搜索（Depth">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2025/07/22/yq2BdwmtZcvgQfH.png">
+<meta property="article:published_time" content="2020-07-25T01:17:38.000Z">
+<meta property="article:modified_time" content="2025-08-28T12:07:36.221Z">
+<meta property="article:author" content="Tanger">
+<meta property="article:tag" content="ACM竞赛入门算法">
+<meta property="article:tag" content="贪心算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2025/07/22/yq2BdwmtZcvgQfH.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ACM 算法入门 · 搜索篇：优化向",
+  "url": "http://tanger.ltd/2020/07/25/09-ACM-algorithm-search/",
+  "image": "https://s2.loli.net/2025/07/22/yq2BdwmtZcvgQfH.png",
+  "datePublished": "2020-07-25T01:17:38.000Z",
+  "dateModified": "2025-08-28T12:07:36.221Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Tanger",
+      "url": "http://tanger.ltd"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://github.com/redhat123456/pohots/blob/master/logo.icon?raw=true"><link rel="canonical" href="http://tanger.ltd/2020/07/25/09-ACM-algorithm-search/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ACM 算法入门 · 搜索篇：优化向',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" crossorigin="anonymous" referrerpolicy="no-referrer" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://s2.loli.net/2025/07/10/8eIanE1LU2qspTW.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(https://s2.loli.net/2025/07/22/yq2BdwmtZcvgQfH.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">[百炼成钢]--加油Tanger，相信自己</span></a><a class="nav-page-title" href="/"><span class="site-name">ACM 算法入门 · 搜索篇：优化向</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/archives/"><span> 文章</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/links/"><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">ACM 算法入门 · 搜索篇：优化向</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-25T01:17:38.000Z" title="发表于 2020年-07月-25日 09时:17分:38秒">2020年-07月-25日</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-28T12:07:36.221Z" title="更新于 2025年-08月-28日 20时:07分:36秒">2025年-08月-28日</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8/">算法入门</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="🧭-ACM-算法入门-·-搜索篇（优化向）"><a href="#🧭-ACM-算法入门-·-搜索篇（优化向）" class="headerlink" title="🧭 ACM 算法入门 · 搜索篇（优化向）"></a>🧭 ACM 算法入门 · 搜索篇（优化向）</h1><p>本篇将带你从搜索算法基础出发，结合实战与技巧，掌握高效的搜索策略与代码实现。</p>
+<hr>
+<h2 id="1️⃣-什么是搜索算法？"><a href="#1️⃣-什么是搜索算法？" class="headerlink" title="1️⃣ 什么是搜索算法？"></a>1️⃣ 什么是搜索算法？</h2><p>搜索算法是一种通过穷举可能状态，寻找满足条件解的算法方式。</p>
+<blockquote>
+<p>搜索过程 &#x3D; <strong>构造解答树 + 找到目标节点</strong></p>
+</blockquote>
+<p>它利用计算机的高性能，遍历问题的状态空间，找到通向目标的路径或解。</p>
+<hr>
+<h2 id="2️⃣-深度优先搜索（DFS）"><a href="#2️⃣-深度优先搜索（DFS）" class="headerlink" title="2️⃣ 深度优先搜索（DFS）"></a>2️⃣ 深度优先搜索（DFS）</h2><h3 id="🔍-定义"><a href="#🔍-定义" class="headerlink" title="🔍 定义"></a>🔍 定义</h3><p>深度优先搜索（Depth First Search）是一种回溯型搜索方法，形象比喻为“不撞南墙不回头”。</p>
+<h3 id="🧠-原理说明"><a href="#🧠-原理说明" class="headerlink" title="🧠 原理说明"></a>🧠 原理说明</h3><ul>
+<li>从某个起点出发，尝试所有可能路径</li>
+<li>沿路径深入，直到到达终点或走不通</li>
+<li>回溯，换一条路径再试</li>
+</ul>
+<h3 id="✨-搜索流程："><a href="#✨-搜索流程：" class="headerlink" title="✨ 搜索流程："></a>✨ 搜索流程：</h3><ol>
+<li>标记当前位置为“已走”</li>
+<li>遍历四个方向 &#x2F; 所有可能状态</li>
+<li>若合法、未访问 -&gt; 递归进入</li>
+<li>回溯：搜索完该路径后恢复现场</li>
+</ol>
+<h3 id="🧩-示例场景："><a href="#🧩-示例场景：" class="headerlink" title="🧩 示例场景："></a>🧩 示例场景：</h3><p>从起点 <code>A</code> 出发，目标是到达 <code>G</code>，若有多个路径，通过 DFS 可遍历所有可能路径。</p>
+<h3 id="📦-模板代码"><a href="#📦-模板代码" class="headerlink" title="📦 模板代码"></a>📦 模板代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (到达终点) &#123;</span><br><span class="line">        更新最优解;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (每一个方向) &#123;</span><br><span class="line">        <span class="keyword">if</span> (新坐标合法且未访问) &#123;</span><br><span class="line">            标记已访问;</span><br><span class="line">            <span class="built_in">dfs</span>(新位置);</span><br><span class="line">            恢复现场; <span class="comment">// 回溯</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="📌-示例题（DFS）"><a href="#📌-示例题（DFS）" class="headerlink" title="📌 示例题（DFS）"></a>📌 示例题（DFS）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">char</span> mp[<span class="number">51</span>][<span class="number">51</span>];</span><br><span class="line"><span class="type">int</span> vis[<span class="number">51</span>][<span class="number">51</span>];</span><br><span class="line"><span class="type">int</span> dx[] = &#123;<span class="number">-1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>&#125;, dy[] = &#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">-1</span>&#125;;</span><br><span class="line"><span class="type">int</span> ans = <span class="number">0</span>, step = <span class="number">0</span>, min = <span class="number">999999</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> step)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt;= n || y &lt; <span class="number">0</span> || y &gt;= m) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (x == n - <span class="number">1</span> &amp;&amp; y == m - <span class="number">1</span>) &#123;</span><br><span class="line">        ans = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (step &lt; min) min = step;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">        <span class="type">int</span> nx = x + dx[i], ny = y + dy[i];</span><br><span class="line">        <span class="keyword">if</span> (mp[nx][ny] == <span class="string">&#x27;*&#x27;</span> &amp;&amp; vis[nx][ny] == <span class="number">0</span>) &#123;</span><br><span class="line">            vis[nx][ny] = <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">dfs</span>(nx, ny, step + <span class="number">1</span>);</span><br><span class="line">            vis[nx][ny] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3️⃣-广度优先搜索（BFS）"><a href="#3️⃣-广度优先搜索（BFS）" class="headerlink" title="3️⃣ 广度优先搜索（BFS）"></a>3️⃣ 广度优先搜索（BFS）</h2><h3 id="📘-定义"><a href="#📘-定义" class="headerlink" title="📘 定义"></a>📘 定义</h3><p>BFS（Breadth First Search）是一种层级遍历策略，适合用于求<strong>最短路径问题</strong>。</p>
+<ul>
+<li>每次将当前层所有状态展开</li>
+<li>下一层再由当前层所有节点扩展而来</li>
+<li>利用<strong>队列</strong>实现（先进先出）</li>
+</ul>
+<h3 id="🧠-应用举例：社交网络芒果商人问题"><a href="#🧠-应用举例：社交网络芒果商人问题" class="headerlink" title="🧠 应用举例：社交网络芒果商人问题"></a>🧠 应用举例：社交网络芒果商人问题</h3><ul>
+<li>从你出发，查找朋友是否是芒果销售商</li>
+<li>如果没有，再查找朋友的朋友</li>
+<li>用队列管理待查人，用集合标记访问过的人</li>
+</ul>
+<h3 id="🧊-模板代码（最短路径）"><a href="#🧊-模板代码（最短路径）" class="headerlink" title="🧊 模板代码（最短路径）"></a>🧊 模板代码（最短路径）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    <span class="type">int</span> x, y, step;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bfs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    queue&lt;Node&gt; q;</span><br><span class="line">    q.<span class="built_in">push</span>(&#123;<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>&#125;);</span><br><span class="line">    vis[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        Node f = q.<span class="built_in">front</span>(); q.<span class="built_in">pop</span>();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (f.x == n<span class="number">-1</span> &amp;&amp; f.y == m<span class="number">-1</span>) <span class="keyword">return</span> f.step;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">            <span class="type">int</span> nx = f.x + dx[i], ny = f.y + dy[i];</span><br><span class="line">            <span class="keyword">if</span> (nx &lt; <span class="number">0</span> || ny &lt; <span class="number">0</span> || nx &gt;= n || ny &gt;= m) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (mp[nx][ny] == <span class="string">&#x27;*&#x27;</span> &amp;&amp; vis[nx][ny] == <span class="number">0</span>) &#123;</span><br><span class="line">                vis[nx][ny] = <span class="number">1</span>;</span><br><span class="line">                q.<span class="built_in">push</span>(&#123;nx, ny, f.step + <span class="number">1</span>&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="✅-BFS-特点："><a href="#✅-BFS-特点：" class="headerlink" title="✅ BFS 特点："></a>✅ BFS 特点：</h3><ul>
+<li>每一层搜索结果都是之前状态的基础</li>
+<li>一旦到达目标，<strong>即为最短路径</strong></li>
+<li>缺点：空间大（需要存储整个搜索层）</li>
+</ul>
+<hr>
+<h2 id="4️⃣-搜索进阶策略一览"><a href="#4️⃣-搜索进阶策略一览" class="headerlink" title="4️⃣ 搜索进阶策略一览"></a>4️⃣ 搜索进阶策略一览</h2><table>
+<thead>
+<tr>
+<th>技术</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>剪枝</td>
+<td>提前排除非法或不必要的状态</td>
+</tr>
+<tr>
+<td>双向 BFS</td>
+<td>从起点和终点同时扩展，降低搜索深度</td>
+</tr>
+<tr>
+<td>A* 启发式搜索</td>
+<td>利用估价函数 f(n)&#x3D;g(n)+h(n) 定向搜索</td>
+</tr>
+<tr>
+<td>IDDFS</td>
+<td>迭代加深 DFS，适合空间紧张且目标层较深</td>
+</tr>
+<tr>
+<td>回溯法</td>
+<td>DFS 基础上加状态恢复操作，用于组合枚举</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="5️⃣-搜索剪枝与优化技巧"><a href="#5️⃣-搜索剪枝与优化技巧" class="headerlink" title="5️⃣ 搜索剪枝与优化技巧"></a>5️⃣ 搜索剪枝与优化技巧</h2><h3 id="🔪-剪枝分类："><a href="#🔪-剪枝分类：" class="headerlink" title="🔪 剪枝分类："></a>🔪 剪枝分类：</h3><ol>
+<li><strong>边界条件剪枝</strong>：越界、重复访问</li>
+<li><strong>最优性剪枝</strong>：当前路径代价超过已知最优</li>
+<li><strong>哈希状态压缩</strong>：如 bitmask 表示状态，节省内存</li>
+<li><strong>路径排序（贪心 DFS）</strong>：优先尝试可能更优的路径</li>
+</ol>
+<hr>
+<h2 id="6️⃣-搜索算法对比"><a href="#6️⃣-搜索算法对比" class="headerlink" title="6️⃣ 搜索算法对比"></a>6️⃣ 搜索算法对比</h2><table>
+<thead>
+<tr>
+<th>算法</th>
+<th>是否最短路径</th>
+<th>空间复杂度</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DFS</td>
+<td>否</td>
+<td>O(depth)</td>
+<td>所有路径，组合枚举</td>
+</tr>
+<tr>
+<td>BFS</td>
+<td>是</td>
+<td>O(n^2)</td>
+<td>最短路径问题</td>
+</tr>
+<tr>
+<td>双向 BFS</td>
+<td>是</td>
+<td>O(n)</td>
+<td>图结构路径问题</td>
+</tr>
+<tr>
+<td>A*</td>
+<td>是</td>
+<td>O(n log n)</td>
+<td>图搜索+启发函数</td>
+</tr>
+<tr>
+<td>回溯法</td>
+<td>否（需配合）</td>
+<td>O(n)</td>
+<td>子集&#x2F;排列类问题</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🧠-小结"><a href="#🧠-小结" class="headerlink" title="🧠 小结"></a>🧠 小结</h2><p>搜索是所有算法题的基石，而搜索优化正是通向高效解法的关键。</p>
+<p>掌握以下内容：</p>
+<ul>
+<li>DFS&#x2F;BFS 实现与应用</li>
+<li>剪枝与回溯技巧</li>
+<li>搜索路径记录与状态设计</li>
+<li>进阶搜索方法（A*, IDDFS, 双向 BFS）</li>
+</ul>
+<hr>
+<h2 id="🔗-拓展阅读"><a href="#🔗-拓展阅读" class="headerlink" title="🔗 拓展阅读"></a>🔗 拓展阅读</h2><ul>
+<li>《算法竞赛入门经典》</li>
+<li>《算法图解》 by Aditya Bhargava</li>
+<li><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/">ACWing 搜索专题</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://tanger.ltd">Tanger</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://tanger.ltd/2020/07/25/09-ACM-algorithm-search/">http://tanger.ltd/2020/07/25/09-ACM-algorithm-search/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://tanger.ltd" target="_blank">[百炼成钢]--加油Tanger，相信自己</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ACM%E7%AB%9E%E8%B5%9B%E5%85%A5%E9%97%A8%E7%AE%97%E6%B3%95/">ACM竞赛入门算法</a><a class="post-meta__tags" href="/tags/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">贪心算法</a></div><div class="post-share"><div class="social-share" data-image="https://s2.loli.net/2025/07/22/yq2BdwmtZcvgQfH.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/07/25/11-ACM-middlecollege-7-25/" title="桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解"><img class="cover" src="https://s2.loli.net/2025/07/22/xGWbqDXVIQFZr7s.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解</div></div><div class="info-2"><div class="info-item-1">桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 期中考试题解这次比赛简直绝了，A 到 E 五道题一道不会，就最后的 F 题打牌会，呜呜呜，还是多刷刷算法题吧。 A: 奇数和数组题目描述： 给你一个由 n 个整数组成的数组 a。在一次移动中，您可以选择两个下标 (1 \leq i, j \leq n)，且 (i \neq j)，并且设置 (a_i :&#x3D; a_j)。您可以执行这样的移动任意次数（可能是零次）。您可以在不同的操作中选择不同的下标。操作 :&#x3D; 是赋值的操作（即选择 i 和 j 并用 (a_j) 替换 (a_i)）。你的任务是判断是否有可能得到一个元素之和为奇数（不能被 2 整除）的数组。 输入：  第一行包含一个整数 t（(1 \leq t \leq 2000)）——测试用例的数量。 接下来的 2t 行描述了测试用例。 测试用例的第一行包含一个整数 n（(1 \leq n \leq 2000)）——数组中元素的数量。 测试用例的第二行包含 n 个整数 (a_1, a_2, \dots, a_n)（(1 \leq a_i \leq 200...</div></div></div></a><a class="pagination-related" href="/2020/07/25/10-ACM-homework-7-25/" title="桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 作业题解"><img class="cover" src="https://s2.loli.net/2025/07/22/C8mD4cpNPyjrHqK.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 作业题解</div></div><div class="info-2"><div class="info-item-1">桂林电子科技大学 ACM 暑假课 | 7 月 25 日 ACM 作业题解A: 六皇后题目描述： 一个如下的 6×6 的跳棋棋盘，有六个棋子被放置在棋盘上，使得每行、每列有且只有一个，每条对角线（包括两条主对角线的所有平行线）上至多有一个棋子。 行号：1 2 3 4 5 6列号：2 4 6 1 3 5 这只是棋子放置的一个解。请编一个程序找出所有棋子放置的解。并把它们以上面的序列方法输出，解按字典顺序排列。请输出前 3 个解。最后一行是解的总个数。 输入： 一行一个正整数 n，6≤n≤13，表示棋盘是 nxn 大小的。 输出：  前三行为前三个解，每个解的两个数字之间用一个空格隔开。  第四行只有一个数字，表示解的总数。   样例输入： 16  样例输出： 12342 4 6 1 3 53 6 2 5 1 44 1 5 2 6 34  参考程序： 12345678910111213141516171819202122232425262728293031323334353637#include&lt;iostream&gt;using namespace std;int count ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2020/07/15/05-ACM-algorithm-greedy/" title="ACM 算法入门 · 贪心篇：从局部最优到整体最优的策略思维"><img class="cover" src="https://s2.loli.net/2025/07/22/xGWbqDXVIQFZr7s.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020年-07月-15日</div><div class="info-item-2">ACM 算法入门 · 贪心篇：从局部最优到整体最优的策略思维</div></div><div class="info-2"><div class="info-item-1">ACM 算法入门 · 贪心篇：从局部最优到整体最优的策略思维什么是贪心算法？ 贪心算法（Greedy Algorithm） 是一种在每一步选择中都采取当前状态下最优（即最有利）选择的策略，期望通过局部最优最终达到全局最优。  它的核心思想是：  局部最优 ➜ 全局最优  但需要特别注意的是：贪心策略并不总是适用于所有问题，它只适合满足以下两个条件的问题：  ✅ 最优子结构：问题的最优解包含其子问题的最优解； ✅ 无后效性：某一步的选择不会影响后续的选择过程。  如果问题不满足这两个性质，使用贪心算法可能得不到正确解。  贪心算法的基本思路贪心算法虽然没有统一的模板，但通常遵循以下解决步骤：  建立数学模型：用合理的数据结构和变量表达问题； 拆解为子问题：将原问题划分为一系列阶段性子问题； 定义贪心策略：找出每一步的“最优选择”规则； 按策略求解子问题：每次都按照贪心策略做选择； 组合局部最优解：最终汇总各步的选择，构成整体解。   贪心算法存在的问题 不能保证最终求得的解一定是全局最优； 不适用于所有需要求最大值或最小值的问题； 只能求满足某些特定约束条件下的可行解。   贪心算...</div></div></div></a><a class="pagination-related" href="/2020/07/12/04-ACM-algorithm-recursion/" title="ACM 算法入门 · 递归篇：从简单调用到巧妙解题"><img class="cover" src="https://s2.loli.net/2025/07/22/vt8iyEo4fk6YOXP.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020年-07月-12日</div><div class="info-item-2">ACM 算法入门 · 递归篇：从简单调用到巧妙解题</div></div><div class="info-2"><div class="info-item-1">ACM 算法入门 · 递归篇：从简单调用到巧妙解题什么是递归？ 递归（Recursion）是一种程序调用自身的编程技巧，常用于将复杂问题分解为规模更小的同类问题。它是一种 “以小见大” 的思想，用有限的代码描述无限的过程。  递归在程序设计语言中被广泛应用，尤其在算法题中非常常见。其核心在于：  边界条件：定义递归终止的情形； 递归调用：将问题逐步缩小并调用自身； 返回过程：逐层返回解，最终合并结果。  举个例子：阶乘的递归定义 12fac(1) = 1fac(n) = n * fac(n-1)  递归三步走（以阶乘为例）Step 1：边界条件（终止递归的出口）我们先考虑一个简单的问题：6! &#x3D;6 × 5 × 4 × 3 × 2 × 1。 在编写阶乘函数时，我们可以有两种实现思路：  从 1 乘到 n（正序递归）  从 n 乘到 1（逆序递归）   不论哪种方式，核心都在于设定边界条件，也就是：什么时候停止递归？ 我们这里采用第二种方式 —— 从 n 递减到 1： 当 n == 1 时，就不再继续向下递归，而是直接返回 1，这就是我们设定的递归终止条件（边界）： 123...</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="giscus-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://s2.loli.net/2025/07/10/8eIanE1LU2qspTW.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Tanger</div><div class="author-info-description">专注于Web前端、PINN、技术成长路径的博客，记录学习过程与实战经验，欢迎交流！</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/redhat123456"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%A7%AD-ACM-%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8-%C2%B7-%E6%90%9C%E7%B4%A2%E7%AF%87%EF%BC%88%E4%BC%98%E5%8C%96%E5%90%91%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">🧭 ACM 算法入门 · 搜索篇（优化向）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%B8%8F%E2%83%A3-%E4%BB%80%E4%B9%88%E6%98%AF%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">1️⃣ 什么是搜索算法？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%B8%8F%E2%83%A3-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%88DFS%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">2️⃣ 深度优先搜索（DFS）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%8D-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">🔍 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%A0-%E5%8E%9F%E7%90%86%E8%AF%B4%E6%98%8E"><span class="toc-number">1.2.2.</span> <span class="toc-text">🧠 原理说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%A8-%E6%90%9C%E7%B4%A2%E6%B5%81%E7%A8%8B%EF%BC%9A"><span class="toc-number">1.2.3.</span> <span class="toc-text">✨ 搜索流程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%A9-%E7%A4%BA%E4%BE%8B%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="toc-number">1.2.4.</span> <span class="toc-text">🧩 示例场景：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%A6-%E6%A8%A1%E6%9D%BF%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.5.</span> <span class="toc-text">📦 模板代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8C-%E7%A4%BA%E4%BE%8B%E9%A2%98%EF%BC%88DFS%EF%BC%89"><span class="toc-number">1.2.6.</span> <span class="toc-text">📌 示例题（DFS）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%B8%8F%E2%83%A3-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%88BFS%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">3️⃣ 广度优先搜索（BFS）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%98-%E5%AE%9A%E4%B9%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">📘 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%A0-%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B%EF%BC%9A%E7%A4%BE%E4%BA%A4%E7%BD%91%E7%BB%9C%E8%8A%92%E6%9E%9C%E5%95%86%E4%BA%BA%E9%97%AE%E9%A2%98"><span class="toc-number">1.3.2.</span> <span class="toc-text">🧠 应用举例：社交网络芒果商人问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%8A-%E6%A8%A1%E6%9D%BF%E4%BB%A3%E7%A0%81%EF%BC%88%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">🧊 模板代码（最短路径）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-BFS-%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-number">1.3.4.</span> <span class="toc-text">✅ BFS 特点：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%B8%8F%E2%83%A3-%E6%90%9C%E7%B4%A2%E8%BF%9B%E9%98%B6%E7%AD%96%E7%95%A5%E4%B8%80%E8%A7%88"><span class="toc-number">1.4.</span> <span class="toc-text">4️⃣ 搜索进阶策略一览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%EF%B8%8F%E2%83%A3-%E6%90%9C%E7%B4%A2%E5%89%AA%E6%9E%9D%E4%B8%8E%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7"><span class="toc-number">1.5.</span> <span class="toc-text">5️⃣ 搜索剪枝与优化技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%AA-%E5%89%AA%E6%9E%9D%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-number">1.5.1.</span> <span class="toc-text">🔪 剪枝分类：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%EF%B8%8F%E2%83%A3-%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="toc-number">1.6.</span> <span class="toc-text">6️⃣ 搜索算法对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%A7%A0-%E5%B0%8F%E7%BB%93"><span class="toc-number">1.7.</span> <span class="toc-text">🧠 小结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%97-%E6%8B%93%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-number">1.8.</span> <span class="toc-text">🔗 拓展阅读</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/08/12/26-/" title="【碎碎念】"><img src="https://s2.loli.net/2025/07/22/tF39TnYBjsWRdMh.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【碎碎念】"/></a><div class="content"><a class="title" href="/2025/08/12/26-/" title="【碎碎念】">【碎碎念】</a><time datetime="2025-08-12T12:12:12.000Z" title="发表于 2025年-08月-12日 20时:12分:12秒">2025年-08月-12日</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/09/25-Study-in-GUET-master-begin/" title="【碎碎念】2025年，我回到桂电接着读研了"><img src="https://s2.loli.net/2025/07/22/c45g9yNPmdn1TJf.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【碎碎念】2025年，我回到桂电接着读研了"/></a><div class="content"><a class="title" href="/2025/08/09/25-Study-in-GUET-master-begin/" title="【碎碎念】2025年，我回到桂电接着读研了">【碎碎念】2025年，我回到桂电接着读研了</a><time datetime="2025-08-09T12:12:12.000Z" title="发表于 2025年-08月-09日 20时:12分:12秒">2025年-08月-09日</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/08/04/24-DeepONet-Learning-nonlinear-operators-for-identifying/" title="【每周一论文分享】DeepONet_Learning_nonlinear_operators_for_identifying"><img src="https://s2.loli.net/2025/07/22/UjSZhlRuyDf7Beb.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【每周一论文分享】DeepONet_Learning_nonlinear_operators_for_identifying"/></a><div class="content"><a class="title" href="/2025/08/04/24-DeepONet-Learning-nonlinear-operators-for-identifying/" title="【每周一论文分享】DeepONet_Learning_nonlinear_operators_for_identifying">【每周一论文分享】DeepONet_Learning_nonlinear_operators_for_identifying</a><time datetime="2025-08-04T12:12:12.000Z" title="发表于 2025年-08月-04日 20时:12分:12秒">2025年-08月-04日</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/12/10/19-markdown-zongjie/" title="[技术干货] 一次性带你了解讲完markdown语法🎈✨"><img src="https://s2.loli.net/2025/07/22/xGWbqDXVIQFZr7s.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="[技术干货] 一次性带你了解讲完markdown语法🎈✨"/></a><div class="content"><a class="title" href="/2021/12/10/19-markdown-zongjie/" title="[技术干货] 一次性带你了解讲完markdown语法🎈✨">[技术干货] 一次性带你了解讲完markdown语法🎈✨</a><time datetime="2021-12-10T02:38:50.000Z" title="发表于 2021年-12月-10日 10时:38分:50秒">2021年-12月-10日</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/06/13/23-wechat-miniapp-developlogo3/" title="[Tanger的开发者日志] 微信开发小程序日志-up体能训练·总结（三）"><img src="https://s2.loli.net/2025/07/22/C8mD4cpNPyjrHqK.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="[Tanger的开发者日志] 微信开发小程序日志-up体能训练·总结（三）"/></a><div class="content"><a class="title" href="/2021/06/13/23-wechat-miniapp-developlogo3/" title="[Tanger的开发者日志] 微信开发小程序日志-up体能训练·总结（三）">[Tanger的开发者日志] 微信开发小程序日志-up体能训练·总结（三）</a><time datetime="2021-06-13T01:44:47.000Z" title="发表于 2021年-06月-13日 09时:44分:47秒">2021年-06月-13日</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;2025 By Tanger</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.2</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const getGiscusTheme = theme => theme === 'dark' ? 'dark' : 'light'
+
+  const createScriptElement = config => {
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => {
+      ele.setAttribute(key, value)
+    })
+    return ele
+  }
+
+  const loadGiscus = (el = document, key) => {
+    const mappingConfig = isShuoshuo
+      ? { 'data-mapping': 'specific', 'data-term': key }
+      : { 'data-mapping': (option && option['data-mapping']) || 'pathname' }
+
+    const giscusConfig = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'redhat123456/hexo_blog',
+      'data-repo-id': 'R_kgDOPHmJiA',
+      'data-category-id': 'DIC_kwDOPHmJiM4CtbXz',
+      'data-theme': getGiscusTheme(document.documentElement.getAttribute('data-theme')),
+      'data-reactions-enabled': '1',
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      ...mappingConfig
+    }
+
+    const scriptElement = createScriptElement(giscusConfig)
+
+    el.querySelector('#giscus-wrap').appendChild(scriptElement)
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyGiscus = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const changeGiscusTheme = theme => {
+    const iframe = document.querySelector('#giscus-wrap iframe')
+    if (iframe) {
+      const message = {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(theme)
+          }
+        }
+      }
+      iframe.contentWindow.postMessage(message, 'https://giscus.app')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeGiscusTheme, 'giscus')
+
+  if (isShuoshuo) {
+    'Giscus' === 'Giscus'
+      ? window.shuoshuoComment = { loadComment: loadGiscus }
+      : window.loadOtherComment = loadGiscus
+    return
+  }
+
+  if ('Giscus' === 'Giscus' || !false) {
+    if (false) btf.loadComment(document.getElementById('giscus-wrap'), loadGiscus)
+    else loadGiscus()
+  } else {
+    window.loadOtherComment = loadGiscus
+  }
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
